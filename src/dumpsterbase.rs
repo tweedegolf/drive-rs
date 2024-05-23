@@ -3,7 +3,7 @@ use std::collections::{BTreeSet, HashMap, HashSet};
 use serde::{Deserialize, Serialize};
 use spdx::ParseMode;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Eq, PartialEq)]
 pub enum DependencyKind {
     Normal,
     Build,
@@ -77,7 +77,7 @@ impl CrateDb {
             .collect()
     }
     pub fn from_dump(crate_names_of_interest: Vec<String>) -> anyhow::Result<CrateDb> {
-        let crates = Self::load_crates(crate_names_of_interest)?;
+        let crates = Self::load_crates(crate_names_of_interest, true)?;
         let dependenants = dependencies(&crates)?;
 
         Ok(CrateDb {
@@ -85,7 +85,7 @@ impl CrateDb {
             dependenants,
         })
     }
-    pub fn load_crates(crate_names: Vec<String>) -> anyhow::Result<Vec<Crate>> {
+    pub fn load_crates(crate_names: Vec<String>, only_newest: bool) -> anyhow::Result<Vec<Crate>> {
         let mut crate_name_to_id = HashMap::new();
         let mut crate_id_to_name = HashMap::new();
         let mut crate_rows = vec![];
@@ -154,7 +154,7 @@ impl CrateDb {
                 let versions = versions
                     .values()
                     .filter(|row| row.crate_id == crate_id)
-                    // .filter(|row| row.id == default_versions[&crate_id])
+                    .filter(|row| !only_newest || row.id == default_versions[&crate_id])
                     .map(|row| {
                         let version_id = row.id;
 
@@ -214,5 +214,5 @@ fn dependencies(crates: &[Crate]) -> anyhow::Result<Vec<Crate>> {
         .map(|d| d.name.clone())
         .collect();
 
-    CrateDb::load_crates(names)
+    CrateDb::load_crates(names, false)
 }
