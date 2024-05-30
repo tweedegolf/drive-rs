@@ -6,6 +6,7 @@ license = "Apache-2.0 OR MIT"
 
 [dependencies]
 anyhow = "1.0.86"
+chrono = { version = "0.4.38", features = ["serde"] }
 csv = "1.3.0"
 db-dump = "0.7.2"
 semver = { version = "1.0.23", features = ["serde"] }

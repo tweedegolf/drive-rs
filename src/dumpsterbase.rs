@@ -1,5 +1,6 @@
-use std::collections::{BTreeSet, HashMap, HashSet};
+use std::collections::{BTreeMap, BTreeSet, HashMap, HashSet};
 
+use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use spdx::ParseMode;
 
@@ -24,6 +25,7 @@ impl From<db_dump::dependencies::DependencyKind> for DependencyKind {
 pub struct Dependency {
     pub name: String,
     pub req: semver::VersionReq,
+    pub newest_version: Option<semver::Version>,
     pub optional: bool,
     pub kind: DependencyKind,
     pub default_features: bool,
@@ -52,6 +54,9 @@ pub struct Crate {
     pub name: String,
     pub downloads: u64,
     pub versions: Vec<Version>,
+    pub description: String,
+    pub created_at: DateTime<Utc>,
+    pub updated_at: DateTime<Utc>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -77,8 +82,29 @@ impl CrateDb {
             .collect()
     }
     pub fn from_dump(crate_names_of_interest: Vec<String>) -> anyhow::Result<CrateDb> {
-        let crates = Self::load_crates(crate_names_of_interest, true)?;
+        let mut crates = Self::load_crates(crate_names_of_interest, true)?;
         let dependenants = dependencies(&crates)?;
+
+        let dep_versions: BTreeMap<_, Vec<_>> = dependenants
+            .iter()
+            .map(|d| {
+                let mut versions: Vec<_> = d.versions.iter().map(|v| v.version.clone()).collect();
+                versions.sort_unstable();
+                versions.reverse();
+                (d.name.clone(), versions)
+            })
+            .collect();
+
+        for dependency in crates
+            .iter_mut()
+            .flat_map(|c| &mut c.versions)
+            .flat_map(|v| &mut v.dependencies)
+        {
+            dependency.newest_version = dep_versions
+                .get(&dependency.name)
+                .and_then(|versions| versions.iter().find(|v| dependency.req.matches(v)))
+                .cloned();
+        }
 
         Ok(CrateDb {
             crates,
@@ -172,6 +198,7 @@ impl CrateDb {
                                 Dependency {
                                     name: crate_name.clone(),
                                     req: dep.req.clone(),
+                                    newest_version: None,
                                     optional: dep.optional,
                                     kind: dep.kind.into(),
                                     default_features: dep.default_features,
@@ -198,6 +225,9 @@ impl CrateDb {
                     name: name.to_string(),
                     downloads,
                     versions,
+                    description: row.description.clone(),
+                    created_at: row.created_at,
+                    updated_at: row.updated_at,
                 })
             })
             .collect();
