@@ -18,8 +18,6 @@
     function combine_filters(crate_length: number, selected: any): number[] {
         let selected_crates = Array.from({length: crate_length}, (_, i) => i + 1);
 
-        console.log(selected);
-
         for (const filter of selected) {
             if (filter === undefined || filter.length === 0) {
                 continue;
@@ -28,8 +26,6 @@
             let selected_filter = filter.flat();
             selected_crates = selected_crates.filter(crate => selected_filter.includes(crate));
         }
-
-        console.log(selected_crates);
 
         return selected_crates;
     }
