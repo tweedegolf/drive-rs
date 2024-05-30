@@ -10,6 +10,7 @@ export interface Crate {
     version: string
     license: string
     downloads: number
+    interfaces: string[]
     updated_at: string
     created_at: string
     rust_version?: string
@@ -25,4 +26,5 @@ export interface Indexes {
     license: { [key: string]: number[] }
     rust_version: { [key: string]: number[] }
     dependencies: { [key: string]: number[] }
+    interfaces: { [key: string]: number[] }
 }

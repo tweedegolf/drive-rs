@@ -2,7 +2,7 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use serde::{Deserialize, Serialize};
 
-use super::WebsiteCrate;
+use super::{Interface, WebsiteCrate};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Index<T: Ord>(pub BTreeMap<T, BTreeSet<usize>>);
@@ -22,6 +22,7 @@ pub struct Indexes {
     pub license: Index<String>,
     pub rust_version: Index<String>,
     pub dependencies: Index<String>,
+    pub interfaces: Index<Interface>,
 }
 
 impl From<&[WebsiteCrate]> for Indexes {
@@ -29,6 +30,7 @@ impl From<&[WebsiteCrate]> for Indexes {
         let mut license = Index::new();
         let mut rust_version = Index::new();
         let mut dependencies = Index::new();
+        let mut interfaces = Index::new();
 
         for (i, krate) in value.iter().enumerate() {
             for l in krate.licenses() {
@@ -47,12 +49,17 @@ impl From<&[WebsiteCrate]> for Indexes {
             for dep in &krate.dependencies {
                 dependencies.add(dep.to_string(), i);
             }
+
+            for interface in &krate.interfaces {
+                interfaces.add(*interface, i);
+            }
         }
 
         Self {
             license,
             rust_version,
             dependencies,
+            interfaces,
         }
     }
 }

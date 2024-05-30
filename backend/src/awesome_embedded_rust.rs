@@ -1,6 +1,7 @@
 use std::path::Path;
-use serde::{Deserialize};
+
 use anyhow::Result;
+use serde::Deserialize;
 
 pub fn from_csv(path: impl AsRef<Path>) -> Result<List> {
     let mut rdr = csv::Reader::from_path(path)?;
