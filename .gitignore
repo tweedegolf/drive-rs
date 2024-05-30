@@ -2,4 +2,3 @@
 target/
 db-dump.tar.gz
 db-dump*
-*.json
