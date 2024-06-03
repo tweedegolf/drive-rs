@@ -34,8 +34,8 @@
 </script>
 
 <h1>{selected_crates.length} beautiful drivers waiting for you!</h1>
-<main class="grid-container">
-    <div>
+<main>
+    <div class="filters">
         <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
         <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
         <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
@@ -45,11 +45,3 @@
 
     <CrateList crates={t_crates} filter={selected_crates} cols_shown={cols}/>
 </main>
-
-<style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: 20px;
-    }
-</style>
