@@ -53,16 +53,16 @@
                     <td>{crate.license}</td>
                 {/if}
                 {#if cols_shown.includes("downloads")}
-                    <td style="text-align: right">{crate.downloads}</td>
+                    <td class="right">{crate.downloads}</td>
                 {/if}
                 {#if cols_shown.includes("updated_at")}
-                    <td>{new Date(crate.updated_at).toLocaleDateString()}</td>
+                    <td class="right">{new Date(crate.updated_at).toLocaleDateString()}</td>
                 {/if}
                 {#if cols_shown.includes("created_at")}
-                    <td>{new Date(crate.created_at).toLocaleDateString()}</td>
+                    <td class="right">{new Date(crate.created_at).toLocaleDateString()}</td>
                 {/if}
                 {#if cols_shown.includes("rust_version")}
-                    <td>{crate.rust_version || ""}</td>
+                    <td class="right">{crate.rust_version || ""}</td>
                 {/if}
             </tr>
         {/if}
@@ -70,19 +70,3 @@
     {/each}
     </tbody>
 </table>
-
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th, td {
-        border: 1px solid;
-        padding: 0.5em;
-    }
-
-    td {
-        text-align: left;
-    }
-</style>
