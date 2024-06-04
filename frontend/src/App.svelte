@@ -39,7 +39,7 @@
                                                  loading="lazy"
                                                  data-recalc-dims="1"
                                                  style="position: absolute; top: 0; right: 0;"></a>
-<h1>{selected_crates.length} beautiful drivers waiting for you!</h1>
+<h1>{selected_crates.length} awesome drivers waiting for you!</h1>
 <main>
     <div class="filters">
         <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
