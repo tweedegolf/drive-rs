@@ -1,0 +1,21 @@
+# TODO: This is mock data! Check before using!
+
+manifest_version = "0.0.1"
+
+[meta]
+names = ["lsm303agr"]
+manufacturer = "ST"
+datasheet = "https://www.st.com/resource/en/datasheet/lsm303agr.pdf"
+categories = ["Sensor::Accelerometer", "Sensor::Magnetometer"]
+part_numbers = ["LSM303AGRTR", "LSM303AGRLTR"]
+used-in = ["bbc microbit v2"]
+
+packages = ["LGA-14"]
+
+[dev_boards]
+adafruit = 4413
+mikroe = 2684
+
+[i2c]
+addrs = [0x1E, 0x1D]
+interrupt = true
