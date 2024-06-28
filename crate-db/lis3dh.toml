@@ -1,5 +1,5 @@
 # TODO: This is mock data! Check before using!
-
+"$schema" = "../crate-db-schema.json"
 manifest_version = "0.0.1"
 
 [meta]

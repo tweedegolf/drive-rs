@@ -5,14 +5,57 @@ names = ["ina219"]
 manufacturer = "TI"
 datasheet = "https://ti.com/lit/gpn/INA219"
 categories = ["Analog::ADC", "Sensor::PowerMeter"]
-part_numbers = ["INA219AIDCNR", "INA219AIDCNR", "INA219AIDCNT", "INA219AIDCNT", "INA219AIDR", "INA219BIDCNR", "INA219BIDCNR", "INA219BIDCNT", "INA219BIDCNT", "INA219BIDR", "INA219AIDCNR", "INA219AIDCNR", "INA219AIDCNT", "INA219AIDCNT", "INA219AIDR", "INA219BIDCNR", "INA219BIDCNR", "INA219BIDCNT", "INA219BIDCNT", "INA219BIDR"]
+part_numbers = [
+    "INA219AIDCNR",
+    "INA219AIDCNR",
+    "INA219AIDCNT",
+    "INA219AIDCNT",
+    "INA219AIDR",
+    "INA219BIDCNR",
+    "INA219BIDCNR",
+    "INA219BIDCNT",
+    "INA219BIDCNT",
+    "INA219BIDR",
+    "INA219AIDCNR",
+    "INA219AIDCNR",
+    "INA219AIDCNT",
+    "INA219AIDCNT",
+    "INA219AIDR",
+    "INA219BIDCNR",
+    "INA219BIDCNR",
+    "INA219BIDCNT",
+    "INA219BIDCNT",
+    "INA219BIDR",
+]
 
-kicad_symbol = ["Sensor_Energy::INA219AxD", "Sensor_Energy::INA219AxDCN", "Sensor_Energy::INA219BxD", "Sensor_Energy::INA219BxDCN"]
+kicad_symbol = [
+    "Sensor_Energy::INA219AxD",
+    "Sensor_Energy::INA219AxDCN",
+    "Sensor_Energy::INA219BxD",
+    "Sensor_Energy::INA219BxDCN",
+]
 packages = ["SOIC", "SOT-23"]
 
 [dev_boards]
 adafruit = 904
 
 [i2c]
-addrs = [0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4a, 0x4b, 0x4c, 0x4d, 0x4e, 0x4f]
+addrs = [
+    0x40,
+    0x41,
+    0x42,
+    0x43,
+    0x44,
+    0x45,
+    0x46,
+    0x47,
+    0x48,
+    0x49,
+    0x4a,
+    0x4b,
+    0x4c,
+    0x4d,
+    0x4e,
+    0x4f,
+]
 interrupt = false

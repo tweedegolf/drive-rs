@@ -1,0 +1,32 @@
+manifest_version = "0.0.1"
+
+[meta]
+names = ["AD5724", "AD5734", "AD5754", "AD5722", "AD5732", "AD5752"]
+manufacturer = "AnalogDevices"
+datasheet = [
+    "https://www.analog.com/media/en/technical-documentation/data-sheets/ad5724_5734_5754.pdf",
+    "https://www.analog.com/media/en/technical-documentation/data-sheets/ad5722_5732_5752.pdf",
+]
+categories = ["Analog::DAC"]
+part_numbers = [
+    "AD5724AREZ",
+    "AD5724AREZ-REEL7",
+    "AD5734AREZ",
+    "AD5734AREZ-REEL7",
+    "AD5754AREZ",
+    "AD5754AREZ-REEL7",
+    "AD5754BREZ",
+    "AD5754BREZ-REEL7",
+    "AD5722AREZ",
+    "AD5722AREZ-REEL7",
+    "AD5732AREZ",
+    "AD5732AREZ-REEL7",
+    "AD5752AREZ",
+    "AD5752AREZ-REEL7",
+]
+
+packages = ["TSSOP-24"]
+
+[spi]
+can_share_bus = true
+interrupt = false
