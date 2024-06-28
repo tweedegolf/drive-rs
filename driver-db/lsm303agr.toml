@@ -4,10 +4,10 @@ manifest_version = "0.0.1"
 [meta]
 names = ["lsm303agr"]
 manufacturer = "ST"
-datasheet = "https://www.st.com/resource/en/datasheet/lsm303agr.pdf"
+datasheets = ["https://www.st.com/resource/en/datasheet/lsm303agr.pdf"]
 categories = ["Sensor::Accelerometer", "Sensor::Magnetometer"]
 part_numbers = ["LSM303AGRTR", "LSM303AGRLTR"]
-used-in = ["bbc microbit v2"]
+used_in = ["bbc microbit v2"]
 
 packages = ["LGA-14"]
 

@@ -4,7 +4,7 @@ manifest_version = "0.0.1"
 [meta]
 names = ["lis3dh"]
 manufacturer = "ST"
-datasheet = "https://www.st.com/resource/en/datasheet/lis3dh.pdf"
+datasheets = ["https://www.st.com/resource/en/datasheet/lis3dh.pdf"]
 categories = ["Sensor::Accelerometer"]
 part_numbers = ["LIS3DHHTR", "LIS3DHTR", "LIS3DHLTR"]
 

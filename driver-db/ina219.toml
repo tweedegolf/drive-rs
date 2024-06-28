@@ -3,7 +3,7 @@ manifest_version = "0.0.1"
 [meta]
 names = ["ina219"]
 manufacturer = "TI"
-datasheet = "https://ti.com/lit/gpn/INA219"
+datasheets = ["https://ti.com/lit/gpn/INA219"]
 categories = ["Analog::ADC", "Sensor::PowerMeter"]
 part_numbers = [
     "INA219AIDCNR",
@@ -34,7 +34,7 @@ kicad_symbol = [
     "Sensor_Energy::INA219BxD",
     "Sensor_Energy::INA219BxDCN",
 ]
-packages = ["SOIC", "SOT-23"]
+packages = ["SOIC-8", "SOT-23"]
 
 [dev_boards]
 adafruit = 904

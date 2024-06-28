@@ -4,12 +4,12 @@ manifest_version = "0.0.1"
 [meta]
 names = ["pca9685"]
 manufacturer = "NXP"
-datasheet = "https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf"
+datasheets = ["https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf"]
 categories = ["IoExpander::PWM"]
 part_numbers = ["PCA9685PW", "PCA9685PW,118", "PCA9685PW,112"]
 
 kicad_symbol = ["Driver_LED::PCA9685BS", "Driver_LED::PCA9685PW"]
-packages = ["TSSOP28", "HVQFN28"]
+packages = ["TSSOP-28", "HVQFN-28"]
 
 [dev_boards]
 adafruit = 815

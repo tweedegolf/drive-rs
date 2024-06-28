@@ -1,9 +1,10 @@
+#:schema ../schema.json
 manifest_version = "0.0.1"
 
 [meta]
 names = ["AD5724", "AD5734", "AD5754", "AD5722", "AD5732", "AD5752"]
 manufacturer = "AnalogDevices"
-datasheet = [
+datasheets = [
     "https://www.analog.com/media/en/technical-documentation/data-sheets/ad5724_5734_5754.pdf",
     "https://www.analog.com/media/en/technical-documentation/data-sheets/ad5722_5732_5752.pdf",
 ]
