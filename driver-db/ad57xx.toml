@@ -28,6 +28,6 @@ part_numbers = [
 
 packages = ["TSSOP-24"]
 
-[spi]
-can_share_bus = true
+[interfaces.spi]
+bus_type = "SpiDevice"
 interrupt = false

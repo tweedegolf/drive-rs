@@ -2,3 +2,6 @@
 target/
 db-dump.tar.gz
 db-dump*
+full-crate-db.json
+full-crate-db-schema.json
+driver-db-schema.json

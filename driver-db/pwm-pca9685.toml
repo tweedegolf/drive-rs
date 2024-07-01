@@ -14,7 +14,7 @@ packages = ["TSSOP-28", "HVQFN-28"]
 [dev_boards]
 adafruit = 815
 
-[i2c]
+[interfaces.i2c]
 addrs = [
     0x40,
     0x41,

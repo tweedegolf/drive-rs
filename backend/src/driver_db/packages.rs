@@ -9,8 +9,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Package {
-    ty: PackageType,
-    pins: u8,
+    pub ty: PackageType,
+    pub pins: u8,
 }
 
 impl FromStr for Package {
@@ -65,7 +65,9 @@ impl JsonSchema for Package {
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(
+    Debug, Copy, Clone, PartialEq, Eq, Ord, PartialOrd, Serialize, Deserialize, JsonSchema,
+)]
 pub enum PackageType {
     TSSOP,
     LGA,

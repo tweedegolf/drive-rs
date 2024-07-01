@@ -7,14 +7,14 @@ manufacturer = "ST"
 datasheets = ["https://www.st.com/resource/en/datasheet/lsm303agr.pdf"]
 categories = ["Sensor::Accelerometer", "Sensor::Magnetometer"]
 part_numbers = ["LSM303AGRTR", "LSM303AGRLTR"]
-used_in = ["bbc microbit v2"]
 
 packages = ["LGA-14"]
 
 [dev_boards]
 adafruit = 4413
 mikroe = 2684
+other = [{ name = "BBC micro:bit v2", link = "https://tech.microbit.org/hardware/" }]
 
-[i2c]
+[interfaces.i2c]
 addrs = [0x1E, 0x1D]
 interrupt = true

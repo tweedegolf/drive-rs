@@ -16,6 +16,6 @@ adafruit = 2809
 sparkfun = 13963
 mikroe = 1905
 
-[i2c]
+[interfaces.i2c]
 addrs = [0x18, 0x19]
 interrupt = true

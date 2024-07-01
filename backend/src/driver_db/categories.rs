@@ -8,7 +8,7 @@ use anyhow::bail;
 use schemars::{json_schema, JsonSchema};
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Ord, PartialOrd)]
 pub enum Category {
     Analog(Option<Analog>),
     Sensor(Option<Sensor>),
@@ -79,7 +79,7 @@ impl JsonSchema for Category {
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Ord, PartialOrd)]
 pub enum Analog {
     ADC,
     DAC,
@@ -103,7 +103,7 @@ impl Display for Analog {
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Ord, PartialOrd)]
 pub enum Sensor {
     PowerMeter,
     Accelerometer,
@@ -131,7 +131,7 @@ impl Display for Sensor {
     }
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Ord, PartialOrd)]
 pub enum IoExpander {
     PWM,
 }

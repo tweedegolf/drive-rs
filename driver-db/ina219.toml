@@ -39,7 +39,7 @@ packages = ["SOIC-8", "SOT-23"]
 [dev_boards]
 adafruit = 904
 
-[i2c]
+[interfaces.i2c]
 addrs = [
     0x40,
     0x41,

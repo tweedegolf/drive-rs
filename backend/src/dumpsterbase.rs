@@ -55,6 +55,9 @@ pub struct Crate {
     pub downloads: u64,
     pub versions: Vec<Version>,
     pub description: String,
+    pub homepage: Option<String>,
+    pub documentation: Option<String>,
+    pub repository: Option<String>,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }
@@ -226,6 +229,9 @@ impl CrateDb {
                     downloads,
                     versions,
                     description: row.description.clone(),
+                    homepage: row.homepage.clone(),
+                    documentation: row.documentation.clone(),
+                    repository: row.repository.clone(),
                     created_at: row.created_at,
                     updated_at: row.updated_at,
                 })

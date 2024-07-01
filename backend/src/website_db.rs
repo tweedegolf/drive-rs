@@ -3,6 +3,7 @@ use std::fmt::{Display, Formatter};
 use std::str::FromStr;
 
 use chrono::{DateTime, Utc};
+use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 use spdx::ParseMode;
 
@@ -11,7 +12,9 @@ use crate::website_db::indexes::Indexes;
 
 pub mod indexes;
 
-#[derive(Debug, Copy, Clone, Serialize, Deserialize, Ord, PartialOrd, Eq, PartialEq)]
+#[derive(
+    Debug, Copy, Clone, Serialize, Deserialize, Ord, PartialOrd, Eq, PartialEq, JsonSchema,
+)]
 pub enum Interface {
     I2C,
     SPI,
