@@ -19,7 +19,7 @@ pub struct Driver {
     pub resources: Vec<Resource>,
 }
 
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, JsonSchema)]
+#[derive(Debug, Clone, PartialEq, Default, Serialize, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct Meta {
     pub names: Vec<String>,
