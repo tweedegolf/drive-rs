@@ -60,4 +60,5 @@
 
   <CrateList crates={t_crates} filter={selected_crates} cols_shown={cols} />
 
+  <div>Page generated at: {BUILD_DATE}</div>
 </main>
