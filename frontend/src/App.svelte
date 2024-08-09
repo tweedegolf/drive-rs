@@ -1,14 +1,13 @@
 <script lang="ts">
 
-    import {crates, indexes} from './website_db.json'
-
+    import {crates, indexes} from './full-crate-db.json'
     import CrateList from "./lib/CrateList.svelte";
-    import type {Crate, Indexes} from "./crate-db";
+    import type {FullCrate, Indexes} from "./crate-db";
     import Filter from "./lib/Filter.svelte";
     import ColumnSelector from "./lib/ColumnSelector.svelte";
     import ForkMe from "./lib/ForkMe.svelte";
 
-    const t_crates = crates as Crate[];
+    const t_crates = crates as FullCrate[];
     let t_indexes = indexes as Indexes;
 
     let selected_d: number[][] = [];
@@ -37,7 +36,7 @@
 
 </script>
 
-<ForkMe/>
+<ForkMe />
 
 <h1>{selected_crates.length} awesome drivers waiting for you!</h1>
 <main>

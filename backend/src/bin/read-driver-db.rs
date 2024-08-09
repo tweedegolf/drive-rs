@@ -1,9 +1,18 @@
 use anyhow::bail;
 use drivers::driver_db::Driver;
+use drivers::website_db::indexes::Indexes;
 use drivers::{dumpsterbase, FullCrate};
-use schemars::schema_for;
+use schemars::{schema_for, JsonSchema};
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::{ffi::OsStr, path::Path};
+
+#[derive(Debug, Clone, Serialize, Deserialize, JsonSchema)]
+#[serde(deny_unknown_fields)]
+struct FullCrateDb {
+    crates: Vec<FullCrate>,
+    indexes: Indexes,
+}
 
 fn main() -> anyhow::Result<()> {
     // Write out schema for easier crate description
@@ -46,12 +55,22 @@ fn main() -> anyhow::Result<()> {
 
         output.push(full);
     }
-    std::fs::write("full-crate-db.json", serde_json::to_string_pretty(&output)?)?;
+
+    let indexes = Indexes::from(output.as_slice());
+    let full_output = FullCrateDb {
+        crates: output,
+        indexes,
+    };
+
+    std::fs::write(
+        "full-crate-db.json",
+        serde_json::to_string_pretty(&full_output)?,
+    )?;
 
     // Write out schema
     std::fs::write(
         "full-crate-db-schema.json",
-        serde_json::to_string_pretty(&schema_for!(Vec<FullCrate>))?,
+        serde_json::to_string_pretty(&schema_for!(FullCrateDb))?,
     )?;
 
     Ok(())

@@ -126,16 +126,6 @@ fieldset {
   background-color: var(--color-background-secondary);
 }
 
-.list {
-  overflow-y: auto;
-  max-height: 10rem;
-  background-color: var(--color-background);
-}
-
-.list label {
-  padding: 0 0.5rem;
-}
-
 input[type=text] {
   border: 1px solid var(--color-border);
   width: 100%;
@@ -155,10 +145,6 @@ label {
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
-}
-
 .filters {
   display: flex;
   gap: 1rem;
@@ -169,9 +155,17 @@ label {
 
   .filter-box {
 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    width: fit-content;
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid var(--color-border);
     padding: 1rem 1rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--color-background);
+    z-index: 1;
 
     .filter-name {
       line-height: 0;
@@ -182,25 +176,64 @@ label {
       color: white;
       font-weight: 700;
       padding: 0.1rem 0.25rem;
+      margin: 0 0.15rem;
     }
 
     .filter-wedge {
-      display: inline-block;
-      content: '❮';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 20px;
+      width: 20px;
       transform: rotate(-90deg);
+      line-height: 0;
+      transition: 150ms all ease-in;
+    }
+
+    &:hover {
+      border-color: black;
+    }
+  }
+
+  .filter-popup {
+    position: absolute;
+    background-color: var(--color-background);
+    border: 1px solid black;
+    min-height: 15rem;
+    height: fit-content;
+    max-height: 30rem;
+    width: 20rem;
+    overflow-y: scroll;
+    margin-top: -1px;
+    z-index: 0;
+
+    &.hidden {
+      height: 0px;
+      min-height: 0px;
+    }
+
+    .list {
+      padding: 1rem 0rem;
+
+      label {
+        display: flex;
+        padding-left: 1rem;
+      }
     }
 
   }
 
-
-  .filter-popup {
-    border: 1px solid black;
-    height: 5rem;
-  }
-
-
   &.open {
-    .filter-name::after {
+
+    .filter-box {
+      border-bottom: 0px;
+      padding-bottom: 1.5rem;
+      margin-bottom: 0px;
+      border-color: black;
+    }
+
+    .filter-wedge {
+      transition: 150ms all ease-in;
       transform: rotate(90deg);
     }
   }

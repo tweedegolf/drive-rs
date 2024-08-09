@@ -10,6 +10,8 @@
     let by_count: boolean;
 
     $: sorted_values = by_count ? Object.entries(values).sort((a, b) => b[1].length - a[1].length) : Object.entries(values);
+
+    console.log(values);
 </script>
 
 <div class={open ? 'filter open' : 'filter'} on:click={() => open = !open}>
@@ -18,7 +20,18 @@
     <span class="filter-count">{count}</span>
     <span class="filter-wedge">❮</span>
   </div>
-  <div class={open ? 'filter-popup' : 'filter-popup hidden'}></div>
+  <div class={open ? 'filter-popup' : 'filter-popup hidden'}>
+      <div class="list">
+        {#each sorted_values as [key, value]}
+            {#if key.toLowerCase().includes(filter.toLowerCase())}
+                <label>
+                    <input type="checkbox" bind:group="{selected}" value={value}>
+                    {key} ({value.length})
+                </label>
+            {/if}
+        {/each}
+    </div>
+  </div>
 </div>
 
 <!--
