@@ -44,6 +44,7 @@ impl From<&[FullCrate]> for Indexes {
         let mut has_dev_board = BTreeSet::new();
 
         for (i, krate) in value.iter().enumerate() {
+            // TODO also match sub categories
             for cat in &krate.chip_meta.categories {
                 category.add(*cat, i);
             }
