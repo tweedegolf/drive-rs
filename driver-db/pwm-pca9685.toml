@@ -84,5 +84,5 @@ addrs = [
 interrupt = false
 
 [[resources]]
-type = "BlogPost"
+title = "Blog Post"
 link = "https://blog.eldruin.com/pca9685-pwm-led-servo-controller-driver-in-rust/"

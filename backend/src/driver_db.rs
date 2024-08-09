@@ -114,12 +114,6 @@ pub enum SpiDeviceType {
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, JsonSchema)]
 #[serde(deny_unknown_fields)]
 pub struct Resource {
-    #[serde(rename = "type")]
-    pub ty: ResourceType,
+    pub title: String,
     pub link: Url,
-}
-
-#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, JsonSchema)]
-pub enum ResourceType {
-    BlogPost,
 }
