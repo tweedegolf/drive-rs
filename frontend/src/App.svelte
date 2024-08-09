@@ -1,6 +1,7 @@
 <script lang="ts">
 
     import {crates, indexes} from './full-crate-db.json'
+    import {open_filter} from './store/FilterStore.svelte';
     import CrateList from "./lib/CrateList.svelte";
     import type {FullCrate, Indexes} from "./crate-db";
     import Filter from "./lib/Filter.svelte";
@@ -36,18 +37,22 @@
 
 </script>
 
-<ForkMe />
+<div>
 
-<h1>{selected_crates.length} awesome drivers waiting for you!</h1>
-<main>
+  <ForkMe />
 
-    <div class="filters">
-      <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
-      <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
-      <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
-      <Filter name="Rust Version" values={t_indexes.rust_version} bind:selected={selected_r}/>
-    </div>
+  <h1>{selected_crates.length} awesome drivers waiting for you!</h1>
+  <main>
 
-    <CrateList crates={t_crates} filter={selected_crates} cols_shown={cols}/>
+      <div class="filters">
+        <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
+        <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
+        <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
+        <Filter name="Rust Version" values={t_indexes.rust_version} bind:selected={selected_r}/>
+      </div>
 
-</main>
+      <CrateList crates={t_crates} filter={selected_crates} cols_shown={cols}/>
+
+  </main>
+
+</div>

@@ -176,7 +176,8 @@ label {
       color: white;
       font-weight: 700;
       padding: 0.1rem 0.25rem;
-      margin: 0 0.15rem;
+      margin: 0 0.15rem 0 0.25rem;
+      line-height: 1rem;
     }
 
     .filter-wedge {
@@ -203,17 +204,48 @@ label {
     height: fit-content;
     max-height: 30rem;
     width: 20rem;
-    overflow-y: scroll;
     margin-top: -1px;
     z-index: 0;
 
     &.hidden {
-      height: 0px;
-      min-height: 0px;
+      display: none;
     }
 
-    .list {
-      padding: 1rem 0rem;
+    .filter-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2.5rem;
+      width: 100%;
+      background-color: lightgray;
+      gap: 0.5rem;
+
+      .sort-item {
+        display: flex;
+
+        &.sorted {
+          font-weight: 700;
+        }
+
+        &.sorted.asc {
+          &::after {
+            content: '↑';
+          }
+        }
+
+        &.sorted.desc {
+          &::after {
+            content: '↓';
+          }
+        }
+      }
+    }
+
+    .filter-list {
+      padding: 0rem 0rem;
+      overflow-y: scroll;
+      max-height: calc(30rem - 2.5rem - 2.75rem);
+      min-height: calc(15rem - 2.5rem - 2.75rem);
 
       label {
         display: flex;
@@ -221,6 +253,16 @@ label {
       }
     }
 
+    .filter-search {
+      display: flex;
+      border-top: 1px solid gray;
+      height: 2.75rem;
+      width: 100%;
+      position: relative;
+      padding: 5px;
+      align-items: center;
+      gap: 0.5rem;
+    }
   }
 
   &.open {
@@ -235,6 +277,8 @@ label {
     .filter-wedge {
       transition: 150ms all ease-in;
       transform: rotate(90deg);
+      margin-left: 5px;
+      margin-right: -5px;
     }
   }
 }
