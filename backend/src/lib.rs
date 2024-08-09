@@ -1,5 +1,4 @@
 use crate::driver_db::{DevBoards, Driver, Interfaces, Resource};
-use crate::dumpsterbase::Version;
 use anyhow::Context;
 use chrono::{DateTime, Utc};
 use schemars::{json_schema, JsonSchema, Schema, SchemaGenerator};
