@@ -1,0 +1,50 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build database and Frontend
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        with:
+          persist-credentials: false
+      - name: Install toolchain
+        uses: dtolnay/rust-toolchain@21dc36fb71dd22e3317045c0c31a3f4249868b17
+        with:
+          toolchain: "stable"
+      - name: Rust cache
+        uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84
+        with:
+          shared-key: "build"
+      - name: Download db-dump
+        run: wget --no-verbose https://static.crates.io/db-dump.tar.gz
+      - name: Build database
+        run: cargo run --release --bin read-driver-db
+      - name: Copy generated database to frontend
+        run: cp full-crate-db.json frontend/src/
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm install
+          npm run build -- --base="https://tweedegolf.github.io/drive-rs/"
+      - name: Updload to gh-pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: frontend/dist
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
