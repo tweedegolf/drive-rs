@@ -109,7 +109,7 @@
             </div>
         {/if}
         {#if crate.packages}
-            <div>🕷️ Footprints: {crate.packages.join(", ")}</div>
+            <div>👣 Footprints: {crate.packages.join(", ")}</div>
         {/if}
         {#if crate.resources}
             <div>
