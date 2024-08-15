@@ -6,7 +6,7 @@ updates:
       interval: "weekly"
       day: "thursday"
     groups:
-      npm-dependencies:
+      backend-dependencies:
         patterns:
           - "*"
   - package-ecosystem: "npm"
@@ -15,7 +15,7 @@ updates:
       interval: "weekly"
       day: "thursday"
     groups:
-      npm-dependencies:
+      frontend-dependencies:
         patterns:
           - "*"
   - package-ecosystem: "github-actions"
@@ -24,6 +24,6 @@ updates:
       interval: "weekly"
       day: "thursday"
     groups:
-      npm-dependencies:
+      ci-dependencies:
         patterns:
           - "*"
