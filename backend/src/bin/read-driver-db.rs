@@ -136,8 +136,7 @@ pub fn parse_crate(path: &Path) -> anyhow::Result<(String, Driver)> {
         bail!("Driver info has no file stem: {path:?}");
     };
 
-    let driver_info =
-        toml::from_str::<drivers::driver_db::Driver>(&std::fs::read_to_string(&path)?)?;
+    let driver_info = toml::from_str(&std::fs::read_to_string(path)?)?;
 
     Ok((crate_name.to_string_lossy().into_owned(), driver_info))
 }
