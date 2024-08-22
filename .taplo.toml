@@ -1,0 +1,4 @@
+include = [".taplo.toml", "driver-db/*.toml"]
+
+[formatting]
+indent_string = "    "
