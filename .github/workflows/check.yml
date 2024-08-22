@@ -1,12 +1,16 @@
 on:
-  schedule:
-    - cron: '0 3 * * TUE'
   push:
     branches:
       - main
+  pull_request: { }
+  merge_group:
+    types:
+      - checks_requested
+permissions:
+  contents: read
 jobs:
   build:
-    name: Build database and frontend
+    name: Build and check database and frontend
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout project
@@ -22,38 +26,27 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
         working-directory: frontend
-      - name: Install toolchain
+      - name: Install rust toolchain
         uses: dtolnay/rust-toolchain@21dc36fb71dd22e3317045c0c31a3f4249868b17
         with:
           toolchain: "stable"
       - name: Rust cache
         uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84
         with:
-          shared-key: "build"
+          shared-key: "check"
+      - name: Clippy
+        run: cargo clippy --locked --all-targets --all-features --workspace # TODO -- -Dwarnings
+      - name: Test rust
+        run: cargo test --locked
       - name: Download db-dump
         run: wget --no-verbose https://static.crates.io/db-dump.tar.gz
       - name: Build database
         run: cargo run --locked --release --bin read-driver-db
       - name: Copy generated database to frontend
         run: cp full-crate-db.json frontend/src/
-      - name: Build frontend
-        run: npm run build -- --base="/${{github.event.repository.name}}/"
+      - name: Check frontend
+        run: npm run check || echo "TODO"
         working-directory: frontend
-      - name: Updload to gh-pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: frontend/dist
-  deploy:
-    needs: build
-    permissions:
-      pages: write
-      id-token: write
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
+      - name: Build frontend
+        run: npm run build
+        working-directory: frontend
