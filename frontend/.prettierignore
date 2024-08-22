@@ -1,0 +1,5 @@
+package-lock.json
+.vite/
+.vscode/
+dist/
+README.md

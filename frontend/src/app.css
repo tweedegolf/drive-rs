@@ -38,11 +38,13 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
-  min-width: 454px
+  min-width: 454px;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 a {
@@ -52,7 +54,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-secondary)
+  color: var(--color-secondary);
 }
 
 body {
@@ -85,7 +87,6 @@ main {
   align-items: flex-start;
 }
 
-
 table {
   flex: 1;
   width: 100%;
@@ -93,7 +94,8 @@ table {
   height: auto;
 }
 
-th, td {
+th,
+td {
   border: none;
   padding: 0.5rem;
 }
@@ -126,7 +128,7 @@ fieldset {
   background-color: var(--color-background-secondary);
 }
 
-input[type=text] {
+input[type="text"] {
   border: 1px solid var(--color-border);
   width: 100%;
   font-size: 1rem;
@@ -134,8 +136,8 @@ input[type=text] {
   outline-color: var(--color-primary);
 }
 
-input[type=checkbox] {
-  margin: 0 0.25rem 0 0 ;
+input[type="checkbox"] {
+  margin: 0 0.25rem 0 0;
   vertical-align: middle;
 }
 
@@ -152,9 +154,7 @@ label {
 }
 
 .filter {
-
   .filter-box {
-
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -229,13 +229,13 @@ label {
 
         &.sorted.asc {
           &::after {
-            content: '↑';
+            content: "↑";
           }
         }
 
         &.sorted.desc {
           &::after {
-            content: '↓';
+            content: "↓";
           }
         }
       }
@@ -266,7 +266,6 @@ label {
   }
 
   &.open {
-
     .filter-box {
       border-bottom: 0px;
       padding-bottom: 1.5rem;
