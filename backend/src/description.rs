@@ -1,5 +1,5 @@
-use serde::{Deserialize, Serialize};
 use semver::{Version, VersionReq};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 struct CrateName(String);
@@ -34,7 +34,7 @@ mod spdx_expression_serde {
     }
 
     struct ExpressionVisitor;
-    impl <'de> serde::de::Visitor<'de> for ExpressionVisitor {
+    impl<'de> serde::de::Visitor<'de> for ExpressionVisitor {
         type Value = Expression;
 
         fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
@@ -48,5 +48,4 @@ mod spdx_expression_serde {
             Expression::parse(value).map_err(serde::de::Error::custom)
         }
     }
-
 }

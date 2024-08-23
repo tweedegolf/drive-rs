@@ -51,15 +51,15 @@ pub struct DevBoards {
 
 impl DevBoards {
     pub fn is_empty(&self) -> bool {
-        match self {
+        matches!(
+            self,
             DevBoards {
                 adafruit: None,
                 sparkfun: None,
                 mikroe: None,
-                other: o,
-            } if o.is_empty() => true,
-            _ => false,
-        }
+                other: _,
+            }
+        ) && self.other.is_empty()
     }
 }
 
@@ -81,13 +81,13 @@ pub struct Interfaces {
 
 impl Interfaces {
     pub fn is_empty(&self) -> bool {
-        match self {
+        matches!(
+            self,
             Interfaces {
                 i2c: None,
                 spi: None,
-            } => true,
-            _ => false,
-        }
+            }
+        )
     }
 }
 

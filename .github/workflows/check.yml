@@ -35,9 +35,11 @@ jobs:
         with:
           shared-key: "check"
       - name: Clippy
-        run: cargo clippy --locked --all-targets --all-features --workspace # TODO -- -Dwarnings
+        run: cargo clippy --locked --all-targets --all-features --workspace -- -Dwarnings
       - name: Test rust
         run: cargo test --locked
+      - name: Check rust formatting
+        run: cargo fmt --all --check
       - name: Download db-dump
         run: wget --no-verbose https://static.crates.io/db-dump.tar.gz
       - name: Build database
@@ -45,7 +47,7 @@ jobs:
       - name: Copy generated database to frontend
         run: cp full-crate-db.json frontend/src/
       - name: Check frontend
-        run: npm run check || echo "TODO"
+        run: npm run check -- --fail-on-warnings
         working-directory: frontend
       - name: Build frontend
         run: npm run build
