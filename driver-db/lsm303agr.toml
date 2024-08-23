@@ -13,7 +13,9 @@ packages = ["LGA-14"]
 [dev_boards]
 adafruit = 4413
 mikroe = 2684
-other = [{ name = "BBC micro:bit v2", link = "https://tech.microbit.org/hardware/" }]
+other = [
+    { name = "BBC micro:bit v2", link = "https://tech.microbit.org/hardware/" },
+]
 
 [interfaces.i2c]
 addrs = [0x1E, 0x1D]

@@ -1,4 +1,3 @@
-#:schema ../schema.json
 manifest_version = "0.0.1"
 
 [meta]

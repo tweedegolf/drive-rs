@@ -1,103 +1,103 @@
 export type Category =
-    | "Analog"
-    | "Analog::ADC"
-    | "Analog::DAC"
-    | "Sensor"
-    | "Sensor::PowerMeter"
-export type ShortDependency = string
-export type SpiDeviceType = "SpiBus" | "SpiDevice"
-export type Manufacturer = "AnalogDevices" | "ST" | "TI" | "NXP" | "Unknown"
-export type Package = string
+  | "Analog"
+  | "Analog::ADC"
+  | "Analog::DAC"
+  | "Sensor"
+  | "Sensor::PowerMeter";
+export type ShortDependency = string;
+export type SpiDeviceType = "SpiBus" | "SpiDevice";
+export type Manufacturer = "AnalogDevices" | "ST" | "TI" | "NXP" | "Unknown";
+export type Package = string;
 
 export interface FullCrateDb {
-    crates: FullCrate[]
-    indexes: Indexes
+  crates: FullCrate[];
+  indexes: Indexes;
 }
 
 export interface FullCrate {
-    description: string
-    categories?: Category[]
-    crate_size?: number | null
-    created_at: string
-    datasheets?: string[]
-    dependencies: ShortDependency[]
-    dev_boards?: DevBoards
-    documentation?: string | null
-    downloads: number
-    homepage?: string | null
-    interfaces?: Interfaces
-    kicad_symbol?: string[]
-    license: string
-    manufacturer: Manufacturer
-    name: string
-    names: string[]
-    packages?: Package[]
-    part_numbers?: string[]
-    repository?: string | null
-    resources?: Resource[]
-    rust_version?: string | null
-    this_version_downloads: number
-    updated_at: string
-    version: string
+  description: string;
+  categories?: Category[];
+  crate_size?: number | null;
+  created_at: string;
+  datasheets?: string[];
+  dependencies: ShortDependency[];
+  dev_boards?: DevBoards;
+  documentation?: string | null;
+  downloads: number;
+  homepage?: string | null;
+  interfaces?: Interfaces;
+  kicad_symbol?: string[];
+  license: string;
+  manufacturer: Manufacturer;
+  name: string;
+  names: string[];
+  packages?: Package[];
+  part_numbers?: string[];
+  repository?: string | null;
+  resources?: Resource[];
+  rust_version?: string | null;
+  this_version_downloads: number;
+  updated_at: string;
+  version: string;
 }
 
 export interface DevBoards {
-    adafruit?: number | null
-    mikroe?: number | null
-    other?: GenericDevBoard[]
-    sparkfun?: number | null
+  adafruit?: number | null;
+  mikroe?: number | null;
+  other?: GenericDevBoard[];
+  sparkfun?: number | null;
 }
 
 export interface GenericDevBoard {
-    link: string
-    name: string
+  link: string;
+  name: string;
 }
 
 export interface Interfaces {
-    i2c?: I2C | null
-    spi?: Spi | null
+  i2c?: I2C | null;
+  spi?: Spi | null;
 }
 
 export interface I2C {
-    addrs: number[]
-    interrupt: boolean
+  addrs: number[];
+  interrupt: boolean;
 }
 
 export interface Spi {
-    bus_type: SpiDeviceType
-    interrupt: boolean
+  bus_type: SpiDeviceType;
+  interrupt: boolean;
 }
 
 export interface Resource {
-    title: string
-    link: string
+  title: string;
+  link: string;
 }
 
 export interface Indexes {
-    category: IndexFor_Category
-    dependencies: IndexForString
-    has_dev_board: number[]
-    has_kicad: number[]
-    interfaces: IndexFor_Interface
-    license: IndexForString
-    package: IndexFor_PackageType
-    rust_version: IndexForString
+  category: IndexFor_Category;
+  dependencies: IndexForString;
+  has_dev_board: number[];
+  has_kicad: number[];
+  interfaces: IndexFor_Interface;
+  license: IndexForString;
+  package: IndexFor_PackageType;
+  rust_version: IndexForString;
 
-    [k: string]: unknown
+  [k: string]: unknown;
 }
 
 export interface IndexFor_Category {
-    [k: string]: number[]
+  [k: string]: number[];
 }
 
 export interface IndexForString {
-    [k: string]: number[]
+  [k: string]: number[];
 }
 
 export interface IndexFor_Interface {
-    [k: string]: number[]
+  [k: string]: number[];
 }
 
 export interface IndexFor_PackageType {
-    [k: string]: number[]
+  [k: string]: number[];
 }

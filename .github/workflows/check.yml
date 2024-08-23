@@ -34,12 +34,22 @@ jobs:
         uses: Swatinem/rust-cache@23bce251a8cd2ffc3c1075eaa2367cf899916d84
         with:
           shared-key: "check"
+          cache-all-crates: true # Also cache taplo-cli
+      - name: Install tools
+        run: cargo install taplo-cli --locked
       - name: Clippy
         run: cargo clippy --locked --all-targets --all-features --workspace -- -Dwarnings
       - name: Test rust
         run: cargo test --locked
       - name: Check rust formatting
         run: cargo fmt --all --check
+      - name: Check frontend formatting
+        run: npm run fmt-check
+        working-directory: frontend
+      - name: Check driver-db syntax
+        run: taplo check driver-db/*.toml
+      - name: Check driver-db formatting
+        run: taplo fmt --check --diff
       - name: Download db-dump
         run: wget --no-verbose https://static.crates.io/db-dump.tar.gz
       - name: Build database
