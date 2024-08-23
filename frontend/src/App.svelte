@@ -6,6 +6,7 @@
     import type {FullCrate, Indexes} from "./crate-db";
     import Filter from "./lib/Filter.svelte";
     import ForkMe from "./lib/ForkMe.svelte";
+    import TextFilter from "./lib/TextFilter.svelte";
 
     export let BUILD_DATE: string;
 
@@ -16,6 +17,7 @@
     let selected_l: number[][] = [];
     let selected_r: number[][] = [];
     let selected_i: number[][] = [];
+    let selected_f: number[][] = [];
 
     function combine_filters(crate_length: number, selected: any): number[] {
         let selected_crates = Array.from({length: crate_length}, (_, i) => i + 1);
@@ -39,7 +41,7 @@
         }
     }
 
-    $: selected_crates = combine_filters(t_crates.length, [selected_d, selected_l, selected_r, selected_i]);
+    $: selected_crates = combine_filters(t_crates.length, [selected_d, selected_l, selected_r, selected_i, selected_f]);
 
 </script>
 
@@ -49,8 +51,8 @@
 
 <h1>{selected_crates.length} awesome drivers waiting for you!</h1>
 <main>
-
     <div class="filters">
+        <TextFilter crates={t_crates} bind:selected={selected_f}/>
         <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
         <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
         <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
