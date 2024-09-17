@@ -5,6 +5,7 @@
     import CrateList from "./lib/CrateList.svelte";
     import type {FullCrate, Indexes} from "./crate-db";
     import Filter from "./lib/Filter.svelte";
+    import SortFilter from './lib/SortFilter.svelte';
     import ForkMe from "./lib/ForkMe.svelte";
 
     export let BUILD_DATE: string;
@@ -51,6 +52,7 @@
 <main>
 
     <div class="filters">
+        <SortFilter name="Sort by" bind:selected={selected_d}/>
         <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
         <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
         <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
