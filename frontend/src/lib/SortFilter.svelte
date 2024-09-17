@@ -12,6 +12,30 @@
       $sort_by = type;
     }
 
+    function clickOutside(node, { enabled: initialEnabled, cb }) {
+        const handleOutsideClick = ({ target }) => {
+          if (!node.contains(target)) {
+            cb();
+          }
+        };
+
+        function update({enabled}) {
+          if (enabled) {
+            window.addEventListener('click', handleOutsideClick);
+          } else {
+            window.removeEventListener('click', handleOutsideClick);
+          }
+        }
+
+        update({ enabled: initialEnabled });
+        return {
+          update,
+          destroy() {
+            window.removeEventListener( 'click', handleOutsideClick );
+          }
+        };
+    }
+
     $: open = $open_filter == name;
 
     $: alpha_open = $sort_by == 'alphanumeric';
@@ -22,7 +46,7 @@
 
 </script>
 
-<div class={open ? 'search filter open' : 'search filter'}>
+<div class={open ? 'search filter open' : 'search filter'} use:clickOutside={{ enabled: open, cb: () => open = false }} >
 
     <button class="filter-box" on:click={() => $open_filter === name ? $open_filter = "" : $open_filter = name}>
         <span class="filter-name">{name}</span>
