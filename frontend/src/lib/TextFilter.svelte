@@ -27,6 +27,7 @@
     $: selected = search === "" ? [] : [results.map((r) => r.refIndex)]
 </script>
 
-<div>
+<label>
+    Search text:
     <input type="text" bind:value={search}>
-</div>
+</label>

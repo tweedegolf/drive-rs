@@ -7,11 +7,21 @@
     import Filter from "./lib/Filter.svelte";
     import ForkMe from "./lib/ForkMe.svelte";
     import TextFilter from "./lib/TextFilter.svelte";
+    import CategoryFilter from "./lib/CategoryFilter.svelte";
 
     export let BUILD_DATE: string;
 
     const t_crates = crates as FullCrate[];
     let t_indexes = indexes as Indexes;
+
+    const filters = Object.fromEntries([
+        "category",
+        "dependencies",
+        "interfaces",
+        "license",
+        "package",
+        "rust_version",
+    ].map((cat) => [cat, Object.keys(t_indexes[cat] as any)]));
 
     let selected_d: number[][] = [];
     let selected_l: number[][] = [];
@@ -58,6 +68,10 @@
         <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
         <Filter name="Rust Version" values={t_indexes.rust_version} bind:selected={selected_r}/>
     </div>
+
+    <br/>
+    
+    <CategoryFilter indexes={t_indexes}/>
 
     <CrateList crates={t_crates} filter={selected_crates}/>
 
