@@ -28,6 +28,9 @@
 <div class="crate-box">
     <div class="description-box">
         <div>
+            {crate.categories || []}
+        </div>
+        <div>
             <a href="https://crates.io/crates/{crate.name}">{crate.name}</a>
             <span>{crate.version}</span>
             <button title="Copy Cargo.toml snippet to clipboard" on:click={copyToClipboard}>📋
@@ -72,23 +75,8 @@
                 <button on:click={toggleDevBoards} aria-expanded="{showDevBoards}">✅ Dev Board</button>
                 {#if showDevBoards}
                     <ul>
-                        {#if crate.dev_boards.adafruit}
-                            <li><a href="https://www.adafruit.com/product/{crate.dev_boards.adafruit}">
-                                Adafruit-{crate.dev_boards.adafruit}
-                            </a></li>
-                        {/if}
-                        {#if crate.dev_boards.mikroe}
-                            <li><a href="https://www.mikroe.com/search?search_query=MIKROE-{crate.dev_boards.mikroe}">
-                                MIKROE-{crate.dev_boards.mikroe}
-                            </a></li>
-                        {/if}
-                        {#if crate.dev_boards.sparkfun}
-                            <li><a href="https://www.sparkfun.com/products/{crate.dev_boards.sparkfun}">
-                                SparkFun-{crate.dev_boards.sparkfun}
-                            </a></li>
-                        {/if}
-                        {#each crate.dev_boards.other || [] as board}
-                            <li><a href="{board.link}">{board.name}</a></li>
+                        {#each crate.dev_boards || [] as board}
+                            <li><a href="{board.link}" target="_blank">{board.name}</a></li>
                         {/each}
                     </ul>
                 {/if}

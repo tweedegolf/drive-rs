@@ -74,6 +74,9 @@ pub enum PackageType {
     HVQFN,
     SOIC,
     SOT,
+    SSOP,
+    SO,
+    PDIP,
 }
 
 impl PackageType {
@@ -84,6 +87,9 @@ impl PackageType {
             PackageType::HVQFN,
             PackageType::SOIC,
             PackageType::SOT,
+            PackageType::SSOP,
+            PackageType::SO,
+            PackageType::PDIP,
         ]
     }
 }
@@ -98,6 +104,9 @@ impl FromStr for PackageType {
             "HVQFN" => Ok(PackageType::HVQFN),
             "SOIC" => Ok(PackageType::SOIC),
             "SOT" => Ok(PackageType::SOT),
+            "SSOP" => Ok(PackageType::SSOP),
+            "SO" => Ok(PackageType::SO),
+            "PDIP" => Ok(PackageType::PDIP),
             _ => bail!("Unknown package type: {s}"),
         }
     }

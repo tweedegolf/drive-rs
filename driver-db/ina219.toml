@@ -1,30 +1,30 @@
 manifest_version = "0.0.1"
 
 [meta]
-names = ["ina219"]
-manufacturer = "TI"
-datasheets = ["https://ti.com/lit/gpn/INA219"]
 categories = ["Analog::ADC", "Sensor::PowerMeter"]
+datasheets = ["https://ti.com/lit/gpn/INA219"]
+manufacturer = "TI"
+names = ["ina219"]
 part_numbers = [
     "INA219AIDCNR",
     "INA219AIDCNR",
+    "INA219AIDCNR",
+    "INA219AIDCNR",
+    "INA219AIDCNT",
+    "INA219AIDCNT",
     "INA219AIDCNT",
     "INA219AIDCNT",
     "INA219AIDR",
+    "INA219AIDR",
     "INA219BIDCNR",
     "INA219BIDCNR",
+    "INA219BIDCNR",
+    "INA219BIDCNR",
+    "INA219BIDCNT",
+    "INA219BIDCNT",
     "INA219BIDCNT",
     "INA219BIDCNT",
     "INA219BIDR",
-    "INA219AIDCNR",
-    "INA219AIDCNR",
-    "INA219AIDCNT",
-    "INA219AIDCNT",
-    "INA219AIDR",
-    "INA219BIDCNR",
-    "INA219BIDCNR",
-    "INA219BIDCNT",
-    "INA219BIDCNT",
     "INA219BIDR",
 ]
 
@@ -36,8 +36,11 @@ kicad_symbol = [
 ]
 packages = ["SOIC-8", "SOT-23"]
 
-[dev_boards]
-adafruit = 904
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.adafruit.com/product/904"
+manufacturer = "Adafruit"
+name = "INA219 High Side DC Current Sensor Breakout - 26V ±3.2A Max - STEMMA QT"
 
 [interfaces.i2c]
 addrs = [
