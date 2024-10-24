@@ -1,0 +1,16 @@
+manifest_version = "0.0.1"
+
+[meta]
+categories = ["Actor::MotorController"]
+datasheets = ["https://www.sparkfun.com/datasheets/Robotics/TB6612FNG.pdf"]
+kicad_symbol = ["Driver_Motor:TB6612FNG"]
+manufacturer = "Toshiba"
+names = ["TB6612FNG"]
+packages = ["SSOP-24"]
+part_numbers = ["TB6612FNG"]
+
+[[dev_boards]]
+connections = []
+link = "https://www.sparkfun.com/products/14450"
+manufacturer = "Sparkfun"
+name = "SparkFun Motor Driver - Dual TB6612FNG"

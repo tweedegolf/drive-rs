@@ -1,18 +1,26 @@
 manifest_version = "0.0.1"
 
 [meta]
-names = ["LIS3DH"]
-manufacturer = "ST"
-datasheets = ["https://www.st.com/resource/en/datasheet/lis3dh.pdf"]
 categories = ["Sensor::Accelerometer"]
+datasheets = ["https://www.st.com/resource/en/datasheet/lis3dh.pdf"]
+manufacturer = "ST"
+names = ["LIS3DH"]
 part_numbers = ["LIS3DHTR"]
 
 kicad_symbol = ["Sensor_Motion::LIS3DH"]
 packages = ["LGA-16"]
 
-[dev_boards]
-adafruit = 2809
-sparkfun = 13963
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.adafruit.com/product/2809"
+manufacturer = "Adafruit"
+name = "Adafruit LIS3DH Triple-Axis Accelerometer (+-2g/4g/8g/16g)"
+
+[[dev_boards]]
+connections = []
+link = "https://www.sparkfun.com/products/13963"
+manufacturer = "Sparkfun"
+name = "SparkFun Triple Axis Accelerometer Breakout - LIS3DH"
 
 [interfaces.i2c]
 addrs = [0x18, 0x19]

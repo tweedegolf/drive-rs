@@ -1,18 +1,23 @@
-# TODO: This is mock data! Check before using!
 manifest_version = "0.0.1"
 
 [meta]
-names = ["pca9685"]
-manufacturer = "NXP"
-datasheets = ["https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf"]
 categories = ["IoExpander::PWM"]
-part_numbers = ["PCA9685PW", "PCA9685PW,118", "PCA9685PW,112"]
-
+datasheets = ["https://www.nxp.com/docs/en/data-sheet/PCA9685.pdf"]
 kicad_symbol = ["Driver_LED::PCA9685BS", "Driver_LED::PCA9685PW"]
-packages = ["TSSOP-28", "HVQFN-28"]
+manufacturer = "NXP"
+names = ["pca9685"]
+packages = ["HVQFN-28", "TSSOP-28"]
+part_numbers = ["PCA9685PW", "PCA9685PW,112", "PCA9685PW,118"]
 
-[dev_boards]
-adafruit = 815
+[[dev_boards]]
+connections = []
+link = "https://www.adafruit.com/product/815"
+manufacturer = "Adafruit"
+name = "Adafruit 16-Channel 12-bit PWM/Servo Driver - I2C interface - PCA9685"
+
+[[resources]]
+link = "https://blog.eldruin.com/pca9685-pwm-led-servo-controller-driver-in-rust/"
+title = "Blog Post"
 
 [interfaces.i2c]
 addrs = [
@@ -82,7 +87,3 @@ addrs = [
     0x7F,
 ]
 interrupt = false
-
-[[resources]]
-title = "Blog Post"
-link = "https://blog.eldruin.com/pca9685-pwm-led-servo-controller-driver-in-rust/"
