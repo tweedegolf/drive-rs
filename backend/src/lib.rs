@@ -1,4 +1,4 @@
-use crate::driver_db::{DevBoards, Driver, Interfaces, Resource};
+use crate::driver_db::{boards::DevBoard, Driver, Interfaces, Resource};
 use anyhow::Context;
 use chrono::{DateTime, Utc};
 use schemars::{json_schema, JsonSchema, Schema, SchemaGenerator};
@@ -34,8 +34,8 @@ pub struct FullCrate {
     pub updated_at: DateTime<Utc>,
     #[serde(flatten)]
     pub chip_meta: driver_db::Meta,
-    #[serde(skip_serializing_if = "DevBoards::is_empty", default)]
-    pub dev_boards: DevBoards,
+    #[serde(skip_serializing_if = "Vec::is_empty", default)]
+    pub dev_boards: Vec<DevBoard>,
     #[serde(skip_serializing_if = "Interfaces::is_empty", default)]
     pub interfaces: Interfaces,
     #[serde(skip_serializing_if = "Vec::is_empty", default)]

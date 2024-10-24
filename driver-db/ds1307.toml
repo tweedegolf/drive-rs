@@ -1,0 +1,34 @@
+manifest_version = "0.0.1"
+
+[meta]
+categories = ["Timer::RTC"]
+datasheets = [
+    "https://www.analog.com/media/en/technical-documentation/data-sheets/ds1307.pdf",
+]
+kicad_symbol = [
+    "Timer_RTC:DS1307+",
+    "Timer_RTC:DS1307N+",
+    "Timer_RTC:DS1307Z+",
+    "Timer_RTC:DS1307ZN+",
+]
+manufacturer = "AnalogDevices"
+names = ["DS1307"]
+packages = ["PDIP-8", "SO-8"]
+part_numbers = [
+    "DS1307+",
+    "DS1307N+",
+    "DS1307Z+ T&R",
+    "DS1307Z+",
+    "DS1307ZN+ T&R",
+    "DS1307ZN+",
+]
+
+[[dev_boards]]
+connections = []
+link = "https://www.adafruit.com/product/3296"
+manufacturer = "Adafruit"
+name = "Adafruit DS1307 Real Time Clock Assembled Breakout Board"
+
+[interfaces.i2c]
+addrs = [0b1101000]
+interrupt = false
