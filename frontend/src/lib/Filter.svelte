@@ -6,21 +6,20 @@
     export let values: { [key: string]: number[] };
     export let selected: number[][];
 
-    enum SortType {
-        Name,
-        Count,
-    }
+    type SortType = "Name" | "Count";
+    const NAME: SortType = "Name";
+    const COUNT: SortType = "Count";
 
     let open: boolean = false;
     let filter: string = "";
-    let sort_by: SortType = SortType.Name;
+    let sort_by: SortType = NAME;
     let sort_direction: boolean = true;
 
     function sort(items: { [key: string]: number[] }, sort_by: SortType, sort_direction: boolean) {
         let checked = Object.entries(items).filter((i) => selected.includes(i[1]));
         let unchecked = Object.entries(items).filter((i) => !selected.includes(i[1]));
 
-        if (sort_by == SortType.Count) {
+        if (sort_by == COUNT) {
             checked = checked.sort((a, b) => b[1].length - a[1].length);
             unchecked = unchecked.sort((a, b) => b[1].length - a[1].length);
         }
@@ -63,11 +62,11 @@
     </button>
     <div class={open ? 'filter-popup' : 'filter-popup hidden'}>
         <div class="filter-top">
-            <button class={ sort_by === SortType.Name ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
-                    on:click={() => update_sort(SortType.Name)}>Name
+            <button class={ sort_by === NAME ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
+                    on:click={() => update_sort(NAME)}>Name
             </button>
-            <button class={ sort_by === SortType.Count ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
-                    on:click={() => update_sort(SortType.Count)}>Count
+            <button class={ sort_by === COUNT ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
+                    on:click={() => update_sort(COUNT)}>Count
             </button>
 
             <button on:click={select_all}>All</button>
