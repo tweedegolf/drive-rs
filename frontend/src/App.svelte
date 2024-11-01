@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { crates, indexes } from "./full-crate-db.json";
+  import { crates, indexes, created_at } from "./full-crate-db.json";
   import { open_filter } from "./store/FilterStore.ts";
   import CrateList from "./lib/CrateList.svelte";
   import type { FullCrate, Indexes } from "./crate-db";
@@ -7,8 +7,6 @@
   import SortFilter from "./lib/SortFilter.svelte";
   import ForkMe from "./lib/ForkMe.svelte";
   import TextFilter from "./lib/TextFilter.svelte";
-
-  export let BUILD_DATE: string;
 
   const t_crates = crates as FullCrate[];
   let t_indexes = indexes as Indexes;
@@ -92,5 +90,5 @@
 
   <CrateList crates={t_crates} filter={selected_crates} />
 
-  <div>Page generated at: {BUILD_DATE}</div>
+  <div>Page generated at: {created_at}</div>
 </main>

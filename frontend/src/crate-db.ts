@@ -6,7 +6,6 @@
  */
 
 export type Category =
-  | ("Timer" | "Timer::RTC")
   | "Analog"
   | "Analog::ADC"
   | "Analog::DAC"
@@ -20,7 +19,9 @@ export type Category =
   | "Actor"
   | "Actor::MotorController"
   | "Display"
-  | "Display::OLED";
+  | "Display::OLED"
+  | "Timer"
+  | "Timer::RTC";
 export type ShortDependency = string;
 export type Connection = "StemmaQt" | "MikroBus";
 export type BoardManufacturer = "Adafruit" | "Sparkfun" | "Mikroe" | "BBC";
@@ -28,6 +29,7 @@ export type Package = string;
 
 export interface FullCrateDb {
   crates: FullCrate[];
+  created_at: string;
   indexes: Indexes;
 }
 
