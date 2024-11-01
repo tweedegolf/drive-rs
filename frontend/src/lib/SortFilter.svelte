@@ -3,36 +3,34 @@
     import {open_filter, sort_by} from '../store/FilterStore.svelte';
 
     export let name: string;
-    export let values: { [key: string]: number[] };
-    export let selected: number[][];
 
     let open: boolean = false;
 
-    function update_sort(type) {
+    function update_sort(type: string) {
       $sort_by = type;
     }
 
-    function clickOutside(node, { enabled: initialEnabled, cb }) {
-        const handleOutsideClick = ({ target }) => {
-          if (!node.contains(target)) {
-            cb();
-          }
+    function clickOutside(node: HTMLElement, {enabled: initialEnabled, cb}: { enabled: boolean, cb: Function }) {
+        const handleOutsideClick = ({target}: MouseEvent) => {
+            if (target instanceof Node && !node.contains(target)) {
+                cb();
+            }
         };
 
-        function update({enabled}) {
-          if (enabled) {
-            window.addEventListener('click', handleOutsideClick);
-          } else {
-            window.removeEventListener('click', handleOutsideClick);
-          }
+        function update({enabled}: { enabled: boolean }) {
+            if (enabled) {
+                window.addEventListener('click', handleOutsideClick);
+            } else {
+                window.removeEventListener('click', handleOutsideClick);
+            }
         }
 
-        update({ enabled: initialEnabled });
+        update({enabled: initialEnabled});
         return {
-          update,
-          destroy() {
-            window.removeEventListener( 'click', handleOutsideClick );
-          }
+            update,
+            destroy() {
+                window.removeEventListener('click', handleOutsideClick);
+            }
         };
     }
 

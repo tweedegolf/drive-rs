@@ -17,12 +17,13 @@
         return b.this_version_downloads - a.this_version_downloads;
       }
       else if ($sort_by == 'newly_added') {
-        return b.created_at > a.created_at;
+        return b.created_at > a.created_at ? 1 : 0;
       }
       else if ($sort_by == 'recently_updated') {
-        return b.updated_at > a.updated_at;
+        return b.updated_at > a.updated_at ? 1 : 0;
       }
-      return b.name < a.name;
+
+      return b.name < a.name ? 1 : 0;
     });
 </script>
 

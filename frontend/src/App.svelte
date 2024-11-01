@@ -52,7 +52,7 @@
 <main>
 
     <div class="filters">
-        <SortFilter name="Sort by" bind:selected={selected_d}/>
+        <SortFilter name="Sort by" />
         <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
         <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
         <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
