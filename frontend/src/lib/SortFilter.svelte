@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import {open_filter, sort_by} from '../store/FilterStore.svelte';
+    import {open_filter, sort_by} from '../store/FilterStore.ts';
 
     export let name: string;
 

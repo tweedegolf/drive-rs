@@ -153,6 +153,11 @@ label {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
+
+  input[type="text"] {
+    min-height: 54px;
+  }
+
 }
 
 .filter {

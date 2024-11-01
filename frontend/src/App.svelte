@@ -1,7 +1,7 @@
 <script lang="ts">
 
     import {crates, indexes} from './full-crate-db.json'
-    import {open_filter} from './store/FilterStore.svelte';
+    import {open_filter} from './store/FilterStore.ts';
     import CrateList from "./lib/CrateList.svelte";
     import type {FullCrate, Indexes} from "./crate-db";
     import Filter from "./lib/Filter.svelte";

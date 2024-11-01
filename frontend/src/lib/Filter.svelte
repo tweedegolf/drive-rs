@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import {open_filter} from '../store/FilterStore.svelte';
+    import {open_filter} from '../store/FilterStore.ts';
 
     export let name: string;
     export let values: { [key: string]: number[] };

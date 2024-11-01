@@ -1,10 +1,15 @@
 <script lang="ts">
     import type {FullCrate} from "../crate-db";
-    import {sort_by, scores} from '../store/FilterStore.svelte';
+    import {sort_by, scores} from '../store/FilterStore.ts';
     import Fuse from "fuse.js";
 
     export let crates: FullCrate[];
     export let selected: number[][];
+
+    interface Score {
+      name: String;
+      score: number;
+    }
 
     let search: string = "";
 
@@ -32,7 +37,7 @@
     $ : {
       if (search.length > 0) {
         $sort_by = 'score';
-        $scores = fuse.search(search).map((r) => ({ score: r.score, name: r.item.name }));
+        $scores = (fuse.search(search).map((r) => ({ score: r.score, name: r.item.name } as Score))) as Score[];
       } else {
         $sort_by = 'alphanumeric';
       }
@@ -43,5 +48,5 @@
 </script>
 
 <div>
-    <input type="text" bind:value={search}>
+    <input type="text" placeholder="Search" bind:value={search}>
 </div>

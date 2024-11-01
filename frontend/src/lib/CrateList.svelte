@@ -1,7 +1,12 @@
 <script lang="ts">
     import type {FullCrate} from "../crate-db";
     import Crate from "./Crate.svelte";
-    import {open_filter, sort_by, scores} from '../store/FilterStore.svelte';
+    import {open_filter, sort_by, scores} from '../store/FilterStore.ts';
+
+    interface Score {
+      name: String;
+      score: number;
+    }
 
     export let crates: FullCrate[];
 
@@ -26,8 +31,8 @@
 
       // Sort by text search score
       else if ($sort_by == 'score') {
-        const score_a = $scores.find((s) => s.name == a.name);
-        const score_b = $scores.find((s) => s.name == b.name);
+        const score_a = $scores.find((s : Score) => s.name == a.name);
+        const score_b = $scores.find((s : Score) => s.name == b.name);
         if (score_a && score_b) {
           return score_a.score - score_b.score;
         } else if (score_a) {
