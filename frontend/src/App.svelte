@@ -14,6 +14,7 @@
     const t_crates = crates as FullCrate[];
     let t_indexes = indexes as Indexes;
 
+    let selected_c: number[][] = [];
     let selected_d: number[][] = [];
     let selected_l: number[][] = [];
     let selected_r: number[][] = [];
@@ -42,7 +43,7 @@
         }
     }
 
-    $: selected_crates = combine_filters(t_crates.length, [selected_d, selected_l, selected_r, selected_i, selected_f]);
+    $: selected_crates = combine_filters(t_crates.length, [selected_c, selected_d, selected_l, selected_r, selected_i, selected_f]);
 
 </script>
 
@@ -53,8 +54,9 @@
 <h1>{selected_crates.length} awesome drivers waiting for you!</h1>
 <main>
     <div class="filters">
-        <SortFilter name="Sort by" />
+        <SortFilter name="Sort by"/>
         <TextFilter crates={t_crates} bind:selected={selected_f}/>
+        <Filter name="Categories" values={t_indexes.category} bind:selected={selected_c}/>
         <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
         <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
         <Filter name="👮 License" values={t_indexes.license} bind:selected={selected_l}/>
