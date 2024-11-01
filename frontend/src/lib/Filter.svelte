@@ -15,6 +15,30 @@
     let sort_by: SortType = NAME;
     let sort_direction: boolean = true;
 
+    function clickOutside(node: HTMLElement, {enabled: initialEnabled, cb}: { enabled: boolean, cb: Function }) {
+        const handleOutsideClick = ({target}: MouseEvent) => {
+            if (target instanceof Node && !node.contains(target)) {
+                cb();
+            }
+        };
+
+        function update({enabled}: { enabled: boolean }) {
+            if (enabled) {
+                window.addEventListener('click', handleOutsideClick);
+            } else {
+                window.removeEventListener('click', handleOutsideClick);
+            }
+        }
+
+        update({enabled: initialEnabled});
+        return {
+            update,
+            destroy() {
+                window.removeEventListener('click', handleOutsideClick);
+            }
+        };
+    }
+
     function sort(items: { [key: string]: number[] }, sort_by: SortType, sort_direction: boolean) {
         let checked = Object.entries(items).filter((i) => selected.includes(i[1]));
         let unchecked = Object.entries(items).filter((i) => !selected.includes(i[1]));
@@ -54,24 +78,21 @@
     $: open = $open_filter == name;
 </script>
 
-<div class={open ? 'filter open' : 'filter'}>
+<div class={open ? 'filter open' : 'filter'} use:clickOutside={{ enabled: open, cb: () => open = false }}>
     <button class="filter-box" on:click={() => $open_filter === name ? $open_filter = "" : $open_filter = name}>
         <span class="filter-name">{name}</span>
         {#if count > 0}<span class="filter-count">{count}</span>{/if}
         <span class="filter-wedge">❮</span>
     </button>
     <div class={open ? 'filter-popup' : 'filter-popup hidden'}>
-        <div class="filter-top">
-            <button class={ sort_by === NAME ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
-                    on:click={() => update_sort(NAME)}>Name
-            </button>
-            <button class={ sort_by === COUNT ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
-                    on:click={() => update_sort(COUNT)}>Count
-            </button>
 
-            <button on:click={select_all}>All</button>
-            <button on:click={select_none}>None</button>
-        </div>
+        {#if Object.entries(values).length > 10}
+            <div class="filter-search">
+                🔍 <input type="text" bind:value={filter} placeholder="Search { name }"/>
+                <!--<button on:click={() => filter = ""}>𐄂</button>-->
+            </div>
+        {/if}
+
 
         <div class="filter-list">
             {#each sorted_values as [key, value]}
@@ -83,9 +104,22 @@
                 {/if}
             {/each}
         </div>
-        <div class="filter-search">
-            🔍 <input type="text" bind:value={filter}/>
-            <button on:click={() => filter = ""}>Clear</button>
-        </div>
+
+        {#if Object.entries(values).length > 5}
+            <div class="filter-bottom">
+                Sort by
+                <button class={ sort_by === NAME ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
+                        on:click={() => update_sort(NAME)}>Name
+                </button>
+                <button class={ sort_by === COUNT ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
+                        on:click={() => update_sort(COUNT)}>Count
+                </button>
+
+                Select
+                <button on:click={select_all}>🗹</button>
+                <button on:click={select_none}>☐</button>
+            </div>
+        {/if}
+
     </div>
 </div>

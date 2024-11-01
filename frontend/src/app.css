@@ -200,7 +200,7 @@ label {
     position: absolute;
     background-color: var(--color-background);
     border: 1px solid black;
-    min-height: 15rem;
+    min-height: 10rem;
     height: fit-content;
     max-height: 30rem;
     width: 20rem;
@@ -211,7 +211,7 @@ label {
       display: none;
     }
 
-    .filter-top {
+    .filter-bottom {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -219,6 +219,8 @@ label {
       width: 100%;
       background-color: lightgray;
       gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 14px;
 
       .sort-item {
         display: flex;
@@ -243,9 +245,9 @@ label {
 
     .filter-list {
       padding: 0rem 0rem;
-      overflow-y: scroll;
-      max-height: calc(30rem - 2.5rem - 2.75rem);
-      min-height: calc(15rem - 2.5rem - 2.75rem);
+      overflow-y: auto;
+      max-height: calc(28.5rem - 2.5rem - 2.75rem);
+      min-height: calc(10.75rem - 2.5rem - 2.75rem);
 
       label {
         display: flex;
@@ -255,13 +257,20 @@ label {
 
     .filter-search {
       display: flex;
-      border-top: 1px solid gray;
+      border: 0px;
       height: 2.75rem;
-      width: 100%;
+      width: auto;
       position: relative;
       padding: 5px;
       align-items: center;
       gap: 0.5rem;
+      margin: 0.5rem 0.5rem 0 0.5rem;
+
+      button {
+        font-size: 25px;
+        border: 0px;
+        background-color: inherit;
+      }
     }
   }
 
