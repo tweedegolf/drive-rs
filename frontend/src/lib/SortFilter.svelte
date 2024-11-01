@@ -1,6 +1,6 @@
 <script lang="ts">
 
-    import {open_filter, sort_by} from '../store/FilterStore.svelte';
+    import {open_filter, sort_by} from '../store/FilterStore.ts';
 
     export let name: string;
 
@@ -41,6 +41,7 @@
     $: recent_downloads_open = $sort_by == 'recent_downloads';
     $: newly_added_open = $sort_by == 'newly_added';
     $: recently_updated_open = $sort_by == 'recently_updated';
+    $: text_score = $sort_by == 'score';
 
 </script>
 
@@ -67,6 +68,9 @@
             </label>
             <label>
                 <input type="checkbox" on:click={() => update_sort('recently_updated')} bind:checked={recently_updated_open}> Recently updated
+            </label>
+            <label>
+                <input type="checkbox" on:click={() => update_sort('score')} bind:checked={text_score}> Text search
             </label>
         </div>
     </div>
