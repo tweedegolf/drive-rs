@@ -125,11 +125,8 @@ fn read_all(dir: &Path) -> anyhow::Result<HashMap<String, Driver>> {
 }
 
 pub fn parse_crate(path: &Path) -> anyhow::Result<(String, Driver)> {
-    if !path
-        .extension()
-        .is_some_and(|ext| ext == OsStr::new("toml"))
-    {
-        bail!("Driver info has wrong exctension: {path:?}");
+    if path.extension().is_none_or(|ext| ext != OsStr::new("toml")) {
+        bail!("Driver info has wrong extension: {path:?}");
     }
 
     let Some(crate_name) = path.file_stem() else {
