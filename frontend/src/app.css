@@ -37,6 +37,23 @@
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .filters {
+    .filter {
+      &.search {
+        .filter-box {
+          border: 1px solid white;
+        }
+      }
+      .filter-box {
+        &:hover {
+          border-color: white;
+        }
+      }
+    }
+  }
+}
+
 html {
   box-sizing: border-box;
   font-size: 16px;
