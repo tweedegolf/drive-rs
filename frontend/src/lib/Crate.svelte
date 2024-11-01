@@ -63,6 +63,12 @@
   </div>
 
   <div class="tags-box">
+    {#if crate.dependencies.includes("embedded-hal@1.0.0")}
+      <p title="Supports embedded-hal 1.0">✅ e-h 1.0</p>
+    {/if}
+    {#if crate.dependencies.includes("embedded-hal-async@1.0.0")}
+      <p title="Supports embedded-hal-async 1.0">✅ e-h-async 1.0</p>
+    {/if}
     {#if crate.manufacturer !== "Unknown"}
       <p>🛠️ Manufacturer: {crate.manufacturer}</p>
     {/if}
@@ -83,8 +89,8 @@
     {#if crate.dev_boards}
       <p>
         <button on:click={toggleDevBoards} aria-expanded={showDevBoards}
-          >✅ Dev Board</button
-        >
+          >✅ Dev Board
+        </button>
         {#if showDevBoards}
           <ul>
             {#each crate.dev_boards || [] as board}

@@ -13,6 +13,7 @@ use std::{ffi::OsStr, path::Path};
 struct FullCrateDb {
     crates: Vec<FullCrate>,
     indexes: Indexes,
+    created_at: chrono::DateTime<chrono::Utc>,
 }
 
 fn main() -> anyhow::Result<()> {
@@ -93,6 +94,7 @@ fn main() -> anyhow::Result<()> {
     let full_output = FullCrateDb {
         crates: output,
         indexes,
+        created_at: chrono::Utc::now(),
     };
 
     std::fs::write(
