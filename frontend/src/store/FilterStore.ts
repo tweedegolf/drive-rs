@@ -1,4 +1,4 @@
-import {writable} from 'svelte/store';
+import { writable } from "svelte/store";
 
 export interface Score {
   name: String;
@@ -13,4 +13,3 @@ export let sort_by = writable("alphanumeric");
 
 // Results of text search
 export let scores = writable<Score[]>([]);
-
