@@ -108,11 +108,11 @@
         {#if Object.entries(values).length > 5}
             <div class="filter-bottom">
                 Sort by
-                <button class={ sort_by === SortType.Name ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
-                        on:click={() => update_sort(SortType.Name)}>Name
+                <button class={ sort_by === NAME ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
+                        on:click={() => update_sort(NAME)}>Name
                 </button>
-                <button class={ sort_by === SortType.Count ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
-                        on:click={() => update_sort(SortType.Count)}>Count
+                <button class={ sort_by === COUNT ? sort_direction ? "sort-item sorted asc" : 'sort-item sorted desc' : "sort-item"}
+                        on:click={() => update_sort(COUNT)}>Count
                 </button>
 
                 Select
