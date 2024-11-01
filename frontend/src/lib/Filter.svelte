@@ -6,14 +6,13 @@
     export let values: { [key: string]: number[] };
     export let selected: number[][];
 
-    enum SortType {
-        Name,
-        Count,
-    }
+    type SortType = "Name" | "Count";
+    const NAME: SortType = "Name";
+    const COUNT: SortType = "Count";
 
     let open: boolean = false;
     let filter: string = "";
-    let sort_by: SortType = SortType.Name;
+    let sort_by: SortType = NAME;
     let sort_direction: boolean = true;
 
     function clickOutside(node: HTMLElement, {enabled: initialEnabled, cb}: { enabled: boolean, cb: Function }) {
@@ -44,7 +43,7 @@
         let checked = Object.entries(items).filter((i) => selected.includes(i[1]));
         let unchecked = Object.entries(items).filter((i) => !selected.includes(i[1]));
 
-        if (sort_by == SortType.Count) {
+        if (sort_by == COUNT) {
             checked = checked.sort((a, b) => b[1].length - a[1].length);
             unchecked = unchecked.sort((a, b) => b[1].length - a[1].length);
         }
