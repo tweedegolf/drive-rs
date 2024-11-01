@@ -5,6 +5,7 @@
     import CrateList from "./lib/CrateList.svelte";
     import type {FullCrate, Indexes} from "./crate-db";
     import Filter from "./lib/Filter.svelte";
+    import SortFilter from './lib/SortFilter.svelte';
     import ForkMe from "./lib/ForkMe.svelte";
     import TextFilter from "./lib/TextFilter.svelte";
 
@@ -52,6 +53,7 @@
 <h1>{selected_crates.length} awesome drivers waiting for you!</h1>
 <main>
     <div class="filters">
+        <SortFilter name="Sort by" />
         <TextFilter crates={t_crates} bind:selected={selected_f}/>
         <Filter name="Dependencies" values={t_indexes.dependencies} bind:selected={selected_d}/>
         <Filter name="Interfaces" values={t_indexes.interfaces} bind:selected={selected_i}/>
