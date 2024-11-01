@@ -34,7 +34,7 @@ mod spdx_expression_serde {
     }
 
     struct ExpressionVisitor;
-    impl<'de> serde::de::Visitor<'de> for ExpressionVisitor {
+    impl serde::de::Visitor<'_> for ExpressionVisitor {
         type Value = Expression;
 
         fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {

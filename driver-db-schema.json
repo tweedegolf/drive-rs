@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Driver",
+  "type": "object",
+  "properties": {
+    "dev_boards": {
+      "description": "List of development boards that house this chip",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/DevBoard"
+      }
+    },
+    "interfaces": {
+      "description": "Interfaces used by this chip",
+      "$ref": "#/$defs/Interfaces"
+    },
+    "manifest_version": {
+      "description": "Version of this driver description TOML schema",
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "meta": {
+      "description": "Metadata about the driver",
+      "$ref": "#/$defs/Meta"
+    },
+    "resources": {
+      "description": "Blog articles and similar covering this driver and its usage",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Resource"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "manifest_version",
+    "meta"
+  ],
+  "$defs": {
+    "BoardManufacturer": {
+      "type": "string",
+      "enum": [
+        "Adafruit",
+        "Sparkfun",
+        "Mikroe",
+        "BBC"
+      ]
+    },
+    "Category": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "Timer",
+            "Timer::RTC"
+          ]
+        },
+        {
+          "description": "Devices interacting with analog signals",
+          "type": "string",
+          "const": "Analog"
+        },
+        {
+          "description": "Analog to digital converters",
+          "type": "string",
+          "const": "Analog::ADC"
+        },
+        {
+          "description": "Digital to analog converters",
+          "type": "string",
+          "const": "Analog::DAC"
+        },
+        {
+          "description": "Devices measuring things about their environment",
+          "type": "string",
+          "const": "Sensor"
+        },
+        {
+          "description": "Sensors measuring electric power",
+          "type": "string",
+          "const": "Sensor::PowerMeter"
+        },
+        {
+          "description": "Sensors measuring acceleration\n\n These can also be used to determine where \"down\" is,\n using the gravitational acceleration.",
+          "type": "string",
+          "const": "Sensor::Accelerometer"
+        },
+        {
+          "description": "Sensors measuring rotational acceleration",
+          "type": "string",
+          "const": "Sensor::Gyroscope"
+        },
+        {
+          "description": "Sensors measuring magnetic fields\n\n These are commonly used as compasses, measuring the\n magnetic field of the earth.",
+          "type": "string",
+          "const": "Sensor::Magnetometer"
+        },
+        {
+          "description": "Devices that provide more input and/or output signals",
+          "type": "string",
+          "const": "IoExpander"
+        },
+        {
+          "description": "Devices that provide PWM input and/or output signals",
+          "type": "string",
+          "const": "IoExpander::PWM"
+        },
+        {
+          "description": "Things that move things in the real world",
+          "type": "string",
+          "const": "Actor"
+        },
+        {
+          "description": "Chips for driving motors",
+          "type": "string",
+          "const": "Actor::MotorController"
+        },
+        {
+          "description": "Optical displays",
+          "type": "string",
+          "const": "Display"
+        },
+        {
+          "description": "OLED Screens",
+          "type": "string",
+          "const": "Display::OLED"
+        }
+      ]
+    },
+    "ChipManufacturer": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "AnalogDevices",
+            "TI",
+            "NXP",
+            "Toshiba",
+            "SolomonSystech",
+            "Unknown"
+          ]
+        },
+        {
+          "description": "Also known as ST Micro",
+          "type": "string",
+          "const": "ST"
+        }
+      ]
+    },
+    "Connection": {
+      "type": "string",
+      "enum": [
+        "StemmaQt",
+        "MikroBus"
+      ]
+    },
+    "DevBoard": {
+      "type": "object",
+      "properties": {
+        "connections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Connection"
+          }
+        },
+        "link": {
+          "type": "string",
+          "format": "uri"
+        },
+        "manufacturer": {
+          "$ref": "#/$defs/BoardManufacturer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "manufacturer",
+        "link",
+        "connections"
+      ]
+    },
+    "I2c": {
+      "type": "object",
+      "properties": {
+        "addrs": {
+          "description": "Addresses that can be used by this device",
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "uint8",
+            "minimum": 0
+          }
+        },
+        "interrupt": {
+          "description": "Does this device have an interrupt line?",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "addrs",
+        "interrupt"
+      ]
+    },
+    "Interfaces": {
+      "type": "object",
+      "properties": {
+        "i2c": {
+          "description": "Information about the I2C interface (if present)",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/I2c"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "spi": {
+          "description": "Information about the SPI interface (if present)",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Spi"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "Meta": {
+      "type": "object",
+      "properties": {
+        "categories": {
+          "description": "Functionalities this driver provides",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Category"
+          }
+        },
+        "datasheets": {
+          "description": "Links to datasheets of chips that are supported by this driver",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "kicad_symbol": {
+          "description": "Names of KiCAD symbold for chips this driver supports",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "manufacturer": {
+          "description": "Manufacturer that produces devices supported by this driver",
+          "$ref": "#/$defs/ChipManufacturer"
+        },
+        "names": {
+          "description": "Names of the chips this driver supports",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "packages": {
+          "description": "Packages or footprints in which chips are available",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Package"
+          }
+        },
+        "part_numbers": {
+          "description": "Part numbers of chips this driver supports",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "names",
+        "manufacturer"
+      ]
+    },
+    "Package": {
+      "type": "string",
+      "pattern": "^(TSSOP|LGA|HVQFN|SOIC|SOT|SSOP|SO|PDIP)-\\d+$"
+    },
+    "Resource": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "link"
+      ]
+    },
+    "Spi": {
+      "type": "object",
+      "properties": {
+        "bus_type": {
+          "description": "Whether this device can be used on a shared bus or only on an exclusive device",
+          "$ref": "#/$defs/SpiDeviceType"
+        },
+        "interrupt": {
+          "description": "Does this device have an interrupt line?",
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "bus_type",
+        "interrupt"
+      ]
+    },
+    "SpiDeviceType": {
+      "type": "string",
+      "enum": [
+        "SpiBus",
+        "SpiDevice"
+      ]
+    }
+  }
+}

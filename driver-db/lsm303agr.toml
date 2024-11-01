@@ -1,22 +1,36 @@
-# TODO: This is mock data! Check before using!
 manifest_version = "0.0.1"
 
 [meta]
-names = ["lsm303agr"]
-manufacturer = "ST"
-datasheets = ["https://www.st.com/resource/en/datasheet/lsm303agr.pdf"]
 categories = ["Sensor::Accelerometer", "Sensor::Magnetometer"]
-part_numbers = ["LSM303AGRTR", "LSM303AGRLTR"]
+datasheets = ["https://www.st.com/resource/en/datasheet/lsm303agr.pdf"]
+manufacturer = "ST"
+names = ["LSM303AGR"]
+part_numbers = ["LSM303AGR", "LSM303AGRTR"]
 
 packages = ["LGA-14"]
 
-[dev_boards]
-adafruit = 4413
-mikroe = 2684
-other = [
-    { name = "BBC micro:bit v2", link = "https://tech.microbit.org/hardware/" },
-]
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.adafruit.com/product/4413"
+manufacturer = "Adafruit"
+name = "Adafruit LSM303AGR Accelerometer Magnetometer - STEMMA QT Qwiic"
+
+[[dev_boards]]
+connections = ["MikroBus"]
+link = "https://www.mikroe.com/lsm303agr-click"
+manufacturer = "Mikroe"
+name = "LSM303AGR Click"
+
+[[dev_boards]]
+connections = []
+link = "https://tech.microbit.org/hardware/"
+manufacturer = "BBC"
+name = "BBC micro:bit v2"
 
 [interfaces.i2c]
-addrs = [0x1E, 0x1D]
+addrs = [0x19, 0x1E]
+interrupt = true
+
+[interfaces.spi]
+bus_type = "SpiDevice"
 interrupt = true
