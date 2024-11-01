@@ -1,7 +1,7 @@
 <script lang="ts">
     import type {FullCrate} from "../crate-db";
     import Crate from "./Crate.svelte";
-    import {open_filter, sort_by} from '../store/FilterStore.svelte';
+    import {open_filter, sort_by, scores} from '../store/FilterStore.svelte';
 
     export let crates: FullCrate[];
 
@@ -10,6 +10,7 @@
     let filtered_crates: FullCrate[];
 
     $ : filtered_crates = crates.filter((_, i) => filter.includes(i)).sort((a, b) => {
+
       if ($sort_by == 'all_downloads') {
         return b.downloads - a.downloads;
       }
@@ -23,8 +24,24 @@
         return b.updated_at > a.updated_at ? 1 : 0;
       }
 
+      // Sort by text search score
+      else if ($sort_by == 'score') {
+        const score_a = $scores.find((s) => s.name == a.name);
+        const score_b = $scores.find((s) => s.name == b.name);
+        if (score_a && score_b) {
+          return score_a.score - score_b.score;
+        } else if (score_a) {
+          return 0 - score_a.score;
+        } else if (score_b) {
+          return score_b.score;
+        } else {
+          return 0;
+        }
+      }
+
       return b.name < a.name ? 1 : 0;
     });
+
 </script>
 
 <ol>

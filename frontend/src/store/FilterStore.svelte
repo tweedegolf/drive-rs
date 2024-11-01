@@ -8,4 +8,7 @@
     // The results are sorted by
     export let sort_by = writable("alphanumeric");
 
+    // Results of text search
+    export let scores = writable([]);
+
 </script>

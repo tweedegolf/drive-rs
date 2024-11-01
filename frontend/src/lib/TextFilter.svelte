@@ -1,5 +1,6 @@
 <script lang="ts">
     import type {FullCrate} from "../crate-db";
+    import {sort_by, scores} from '../store/FilterStore.svelte';
     import Fuse from "fuse.js";
 
     export let crates: FullCrate[];
@@ -11,20 +12,34 @@
         keys: [
             "description",
             "manufacturer",
-            "name",
+            {
+                name: "name",
+                weight: 10,
+            },
             "names",
             "part_numbers",
             "resources.title",
         ],
         includeMatches: true,
         includeScore: true,
-        useExtendedSearch: true,
+        useExtendedSearch: false,
     };
-    const index = Fuse.createIndex(options.keys, crates)
-    const fuse = new Fuse(crates, options, index)
+    const index = Fuse.createIndex(options.keys, crates);
+    const fuse = new Fuse(crates, options, index);
 
-    $: results = fuse.search(search)
-    $: selected = search === "" ? [] : [results.map((r) => r.refIndex)]
+    // Store the scores in the FilterStore on changes
+    // and force sorting by score
+    $ : {
+      if (search.length > 0) {
+        $sort_by = 'score';
+        $scores = fuse.search(search).map((r) => ({ score: r.score, name: r.item.name }));
+      } else {
+        $sort_by = 'alphanumeric';
+      }
+    }
+
+    $: results = fuse.search(search);
+    $: selected = search === "" ? [] : [results.map((r) => r.refIndex)];
 </script>
 
 <div>
