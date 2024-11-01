@@ -5,8 +5,9 @@ A search and discovery tool for Rust drivers for embedded components.
 # Adding a driver to the list
 
 1. Add a new file in [`driver-db`](driver-db), named `<crate-name>.toml`
-2. Either copy over one of the other drivers contests, or use a [taplo](https://taplo.tamasfe.dev/) based editor
-   extension like [even better toml](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml) to
+2. Either copy over one of the [other drivers](driver-db/ina219.toml) contents, or use
+   a [taplo](https://taplo.tamasfe.dev/) based editor extension
+   like [even better toml](https://marketplace.visualstudio.com/items?itemName=tamasfe.even-better-toml) to
    fill in fields
 3. (optional) run `taplo fmt` and `taplo lint` to check the file is valid
 4. (if applicable) remove the matching line from the legacy list in [`aer.csv`](aer.csv)
