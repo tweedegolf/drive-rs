@@ -24,20 +24,16 @@ function toggleDevBoards() {
 }
 </script>
 
-
-<div class="crate-box">
+<div class="card">
   <div class="description-box">
-    <ul class="categories">
-      {#each crate.categories || ["Test::Category", "Test::Category"] as category}
-        <li>{category}</li>
-      {/each}
-    </ul>
-    <div>
-      <a href="https://crates.io/crates/{crate.name}">{crate.name}</a>
+    <div class="crate-title">
+      <a class="crate-title" href="https://crates.io/crates/{crate.name}">{crate.name}</a>
       <span>{crate.version}</span>
       <button title="Copy Cargo.toml snippet to clipboard" on:click={copyToClipboard}>📋
         {#if showNotification}Copied!{/if}
       </button>
+    </div>
+    <div class="links">
       {#if crate.documentation}<span><a href="{crate.documentation}">📚 Docs</a></span>{/if}
       {#if crate.repository}<span><a href="{crate.repository}">🗃️ Repo</a></span>{/if}
       {#if crate.homepage}<span><a href="{crate.homepage}">🏠 Homepage</a></span>{/if}
@@ -47,28 +43,34 @@ function toggleDevBoards() {
         <span>🕷️ Supported chips: {crate.names.join(", ")}</span>
       </div>
     {/if}
-    <div>
+    <div class="description">
       {crate.description}
     </div>
+    <ul class="categories">
+      {#each crate.categories || [] as category}
+        <li>{category}</li>
+      {/each}
+    </ul>
   </div>
+  
   <div class="tags-box">
     {#if crate.manufacturer !== "Unknown" }
-      <div>🛠️ Manufacturer: {crate.manufacturer}</div>
+      <p>🛠️ Manufacturer: {crate.manufacturer}</p>
     {/if}
     {#if crate.interfaces && (crate.interfaces.i2c || crate.interfaces.spi) }
-      <div>🚌 Interfaces:
+      <p>🚌 Interfaces:
         {#if crate.interfaces.i2c}I2C{/if}
         {#if crate.interfaces.spi}SPI{/if}
-      </div>
+      </p>
     {/if}
     {#if crate.rust_version }
-      <div>🛠️ MSRV: {crate.rust_version}</div>
+      <p>🛠️ MSRV: {crate.rust_version}</p>
     {/if}
     {#if crate.datasheets }
-      <div>📋 <a href="{crate.datasheets[0]}">Datasheet</a></div> <!-- TODO: Handle multiple datasheets -->
+      <p>📋 <a href="{crate.datasheets[0]}">Datasheet</a></p> <!-- TODO: Handle multiple datasheets -->
     {/if}
     {#if crate.dev_boards }
-      <div>
+      <p>
         <button on:click={toggleDevBoards} aria-expanded="{showDevBoards}">✅ Dev Board</button>
         {#if showDevBoards}
           <ul>
@@ -77,10 +79,10 @@ function toggleDevBoards() {
             {/each}
           </ul>
         {/if}
-      </div>
+      </p>
     {/if}
     {#if crate.kicad_symbol}
-      <div>
+      <p>
         <button on:click={toggleKiCadSymbol} aria-expanded="{showKiCadSymbol}">
           ✅ KiCad {crate.kicad_symbol.length > 1 ? "Symbols" : "Symbol"}
         </button>
@@ -91,10 +93,10 @@ function toggleDevBoards() {
             {/each}
           </ul>
         {/if}
-      </div>
+      </p>
     {/if}
     {#if crate.packages}
-      <div>👣 Footprints: {crate.packages.join(", ")}</div>
+      <p>👣 Footprints: {crate.packages.join(", ")}</p>
     {/if}
     {#if crate.resources}
       <div>
@@ -108,23 +110,23 @@ function toggleDevBoards() {
     {/if}
   </div>
   <div class="stats-box">
-    <div>👮 License: {crate.license}</div>
-    <div> ⬇️ All-Time: {crate.downloads} </div>
-    <div> ⬇️ This version: {crate.this_version_downloads} </div>
-    <div>
+    <p>👮 License: {crate.license}</p>
+    <p> ⬇️ All-Time: {crate.downloads} </p>
+    <p> ⬇️ This version: {crate.this_version_downloads} </p>
+    <p>
       <span>🔄 Last updated: </span>
       <time datetime="{crate.updated_at}" class="ember-tooltip-target">
         {crate.updated_at.substring(0, 10)} <!-- TODO: Make this nicer -->
       </time>
-    </div>
+    </p>
     {#if crate.crate_size}
-      <div>🏋️ Size: {(crate.crate_size / 1024).toFixed(1)} kB</div>
+      <p>🏋️ Size: {(crate.crate_size / 1024).toFixed(1)} kB</p>
     {/if}
   </div>
 </div>
 
 <style>
-.categories, ul {
+.categories {
   display: flex;
   flex-direction: row;
   gap: 8px;
@@ -141,10 +143,9 @@ function toggleDevBoards() {
 }
 
 
-.crate-box {
+.card {
   text-align: left;
   display: flex;
-  justify-content: space-between;
   border: 1px solid #ccc;
   padding: 16px;
   margin: 8px 0;
@@ -157,30 +158,44 @@ function toggleDevBoards() {
 .description-box, .stats-box, .tags-box {
   flex: 1;
   margin: 0 8px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 .description-box {
   flex: 3;
-}
-
-.description-box {
-  max-width: 70%;
-}
-
-.stats-box {
-  max-width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  gap: 12px;
 }
 
-.tags-box div, .stats-box div {
-  background: var(--color-tertiary);
-  border-radius: 2px;
-  margin: 4px 0;
+.description {
+  flex-grow: 1;
+  max-width: 90%;
+}
+
+.links {
+  display: flex;
+  gap: 16px;
+}
+
+.crate-title {
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.crate-title a {
+  font-size: 20px;
+}
+
+.tags-box, .stats-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tags-box p, .stats-box p {
+  margin: 0;
+  padding: 4px 0;
 }
 </style>
