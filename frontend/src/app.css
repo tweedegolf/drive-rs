@@ -20,7 +20,8 @@
   --color-text: #f9f9f9;
   --color-text-secondary: #747bff;
   --color-border: #3a3939;
-
+  --color-border-solid: black;
+  --color-filter-bottom: lightgray;
   --radius: 8px;
 }
 
@@ -34,23 +35,14 @@
     --color-text: #213547;
     --color-text-secondary: #747bff;
     --color-border: #e0e0e0;
+    --color-border-solid: black;
   }
 }
 
 @media (prefers-color-scheme: dark) {
-  .filters {
-    .filter {
-      &.search {
-        .filter-box {
-          border: 1px solid white;
-        }
-      }
-      .filter-box {
-        &:hover {
-          border-color: white;
-        }
-      }
-    }
+  :root {
+    --color-border-solid: white;
+    --color-filter-bottom: gray;
   }
 }
 
@@ -179,7 +171,7 @@ label {
 .filter {
   &.search {
     .filter-box {
-      border: 1px solid black;
+      border: 1px solid var(--color-border-solid);
       font-weight: bold;
     }
   }
@@ -222,14 +214,14 @@ label {
     }
 
     &:hover {
-      border-color: black;
+      border-color: var(--color-border-black);
     }
   }
 
   .filter-popup {
     position: absolute;
     background-color: var(--color-background);
-    border: 1px solid black;
+    border: 1px solid var(--color-border-solid);
     min-height: 10rem;
     height: fit-content;
     max-height: 30rem;
@@ -247,7 +239,7 @@ label {
       justify-content: center;
       height: 2.5rem;
       width: 100%;
-      background-color: lightgray;
+      background-color: var(--color-filter-bottom);
       gap: 0.5rem;
       margin-top: 0.5rem;
       font-size: 14px;
@@ -309,7 +301,7 @@ label {
       border-bottom: 0px;
       padding-bottom: 1.5rem;
       margin-bottom: 0px;
-      border-color: black;
+      border-color: var(--color-border-solid);
     }
 
     .filter-wedge {
