@@ -49,13 +49,6 @@
     "Category": {
       "oneOf": [
         {
-          "type": "string",
-          "enum": [
-            "Timer",
-            "Timer::RTC"
-          ]
-        },
-        {
           "description": "Devices interacting with analog signals",
           "type": "string",
           "const": "Analog"
@@ -124,6 +117,16 @@
           "description": "OLED Screens",
           "type": "string",
           "const": "Display::OLED"
+        },
+        {
+          "description": "Chips measuring time",
+          "type": "string",
+          "const": "Timer"
+        },
+        {
+          "description": "Clocks that keep track of wall time\n\n Often allow to measure time with an external battery.",
+          "type": "string",
+          "const": "Timer::RTC"
         }
       ]
     },

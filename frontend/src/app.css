@@ -20,6 +20,8 @@
   --color-text: #f9f9f9;
   --color-text-secondary: #747bff;
   --color-border: #3a3939;
+
+  --radius: 8px;
 }
 
 @media (prefers-color-scheme: light) {
