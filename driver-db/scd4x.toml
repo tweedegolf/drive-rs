@@ -1,0 +1,40 @@
+manifest_version = "0.0.1"
+
+[meta]
+categories = ["Sensor::CO2", "Sensor::Humidity", "Sensor::Temperature"]
+datasheets = [
+    "https://sensirion.com/media/documents/48C4B7FB/66E05452/CD_DS_SCD4x_Datasheet_D1.pdf",
+]
+manufacturer = "Sensirion"
+names = ["SCD40", "SCD41"]
+part_numbers = ["SCD40-D-R2", "SCD41-D-R2"]
+
+kicad_symbol = ["Sensor_Gas::SCD40-D-R2", "Sensor_Gas::SCD41-D-R2"]
+
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.adafruit.com/product/5187"
+manufacturer = "Adafruit"
+name = "Adafruit SCD-40 - True CO2, Temperature and Humidity Sensor - STEMMA QT / Qwiic"
+
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.adafruit.com/product/5190"
+manufacturer = "Adafruit"
+name = "Adafruit SCD-41 - True CO2 Temperature and Humidity Sensor - STEMMA QT / Qwiic"
+
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.sparkfun.com/products/22395"
+manufacturer = "Sparkfun"
+name = "SparkFun CO₂ Humidity and Temperature Sensor - SCD40 (Qwiic)"
+
+[[dev_boards]]
+connections = ["MikroBus"]
+link = "https://www.mikroe.com/hvac-click"
+manufacturer = "Mikroe"
+name = "HVAC Click"
+
+[interfaces.i2c]
+addrs = [0x62]
+interrupt = false

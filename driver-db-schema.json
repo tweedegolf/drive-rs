@@ -84,6 +84,21 @@
           "const": "Sensor::Gyroscope"
         },
         {
+          "description": "Sensors measuring air CO2 concentration",
+          "type": "string",
+          "const": "Sensor::CO2"
+        },
+        {
+          "description": "Sensors measuring air temperature",
+          "type": "string",
+          "const": "Sensor::Temperature"
+        },
+        {
+          "description": "Sensors measuring air humidity",
+          "type": "string",
+          "const": "Sensor::Humidity"
+        },
+        {
           "description": "Sensors measuring magnetic fields\n\n These are commonly used as compasses, measuring the\n magnetic field of the earth.",
           "type": "string",
           "const": "Sensor::Magnetometer"
@@ -139,6 +154,7 @@
             "TI",
             "NXP",
             "Toshiba",
+            "Sensirion",
             "SolomonSystech",
             "Unknown"
           ]
