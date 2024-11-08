@@ -9,7 +9,9 @@ pub enum ChipManufacturer {
     TI,
     NXP,
     Toshiba,
+    Sensirion,
     SolomonSystech,
+
     #[default]
     Unknown,
 }

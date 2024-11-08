@@ -38,6 +38,18 @@ pub enum Category {
     #[serde(rename = "Sensor::Gyroscope")]
     Gyroscope,
 
+    /// Sensors measuring air CO2 concentration
+    #[serde(rename = "Sensor::CO2")]
+    CO2,
+
+    /// Sensors measuring air temperature
+    #[serde(rename = "Sensor::Temperature")]
+    Temperature,
+
+    /// Sensors measuring air humidity
+    #[serde(rename = "Sensor::Humidity")]
+    Humidity,
+
     /// Sensors measuring magnetic fields
     ///
     /// These are commonly used as compasses, measuring the
@@ -108,6 +120,9 @@ impl Category {
             Self::Accelerometer => Self::Sensor,
             Self::Gyroscope => Self::Sensor,
             Self::Magnetometer => Self::Sensor,
+            Category::CO2 => Self::Sensor,
+            Category::Temperature => Self::Sensor,
+            Category::Humidity => Self::Sensor,
             Self::IoExpander => {
                 return None;
             }
