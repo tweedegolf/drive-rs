@@ -14,17 +14,27 @@
 
   let filtered_crates: FullCrate[];
 
+  function compare(a: string | number, b: string | number): number {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
+
   $: filtered_crates = crates
     .filter((_, i) => filter.includes(i))
-    .sort((a, b) => {
+    .toSorted((a, b) => {
       if ($sort_by == "all_downloads") {
-        return b.downloads - a.downloads;
+        return compare(b.downloads, a.downloads);
       } else if ($sort_by == "recent_downloads") {
-        return b.this_version_downloads - a.this_version_downloads;
+        return compare(b.this_version_downloads, a.this_version_downloads);
       } else if ($sort_by == "newly_added") {
-        return b.created_at > a.created_at ? 1 : 0;
+        return compare(b.created_at, a.created_at);
       } else if ($sort_by == "recently_updated") {
-        return b.updated_at > a.updated_at ? 1 : 0;
+        return compare(b.updated_at, a.updated_at);
       }
 
       // Sort by text search score
@@ -42,7 +52,7 @@
         }
       }
 
-      return b.name < a.name ? 1 : 0;
+      return compare(a.name, b.name);
     });
 </script>
 
