@@ -43,7 +43,8 @@
         "Adafruit",
         "Sparkfun",
         "Mikroe",
-        "BBC"
+        "BBC",
+        "DFRobot"
       ]
     },
     "Category": {
@@ -87,6 +88,16 @@
           "description": "Sensors measuring air CO2 concentration",
           "type": "string",
           "const": "Sensor::CO2"
+        },
+        {
+          "description": "Sensors calculating air CO2 concentration from VOC values.",
+          "type": "string",
+          "const": "Sensor::eCO2"
+        },
+        {
+          "description": "Sensors measuring general air quality by TVOC.",
+          "type": "string",
+          "const": "Sensor::TVOC"
         },
         {
           "description": "Sensors measuring air temperature",
@@ -154,6 +165,7 @@
             "TI",
             "NXP",
             "Toshiba",
+            "ScioSense",
             "Sensirion",
             "SolomonSystech",
             "Unknown"
@@ -170,7 +182,8 @@
       "type": "string",
       "enum": [
         "StemmaQt",
-        "MikroBus"
+        "MikroBus",
+        "Qwiic"
       ]
     },
     "DevBoard": {
