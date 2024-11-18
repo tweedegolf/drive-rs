@@ -1,0 +1,9 @@
+Copyright (c) 2024 Tweede Golf, and Contributors
+
+Except as otherwise noted (below and/or in individual files), drive-rs is
+licensed under the MIT license <LICENSE-MIT> or <http://opensource.org/licenses/MIT>, at your option.
+
+Exceptions:
+
+All files in the driver-db directory are licensed under the CC0 License <LICENSE-CC0> or
+<https://creativecommons.org/publicdomain/zero/1.0/legalcode.txt>.
