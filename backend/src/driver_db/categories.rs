@@ -42,6 +42,14 @@ pub enum Category {
     #[serde(rename = "Sensor::CO2")]
     CO2,
 
+    /// Sensors calculating air CO2 concentration from VOC values
+    #[serde(rename = "Sensor::eCO2")]
+    ECO2,
+
+    /// Sensors measuring general air quality by TVOC
+    #[serde(rename = "Sensor::TVOC")]
+    TVOC,
+
     /// Sensors measuring air temperature
     #[serde(rename = "Sensor::Temperature")]
     Temperature,
@@ -121,8 +129,10 @@ impl Category {
             Self::Gyroscope => Self::Sensor,
             Self::Magnetometer => Self::Sensor,
             Category::CO2 => Self::Sensor,
+            Category::ECO2 => Self::Sensor,
             Category::Temperature => Self::Sensor,
             Category::Humidity => Self::Sensor,
+            Category::TVOC => Self::Sensor,
             Self::IoExpander => {
                 return None;
             }
