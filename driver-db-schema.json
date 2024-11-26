@@ -90,12 +90,12 @@
           "const": "Sensor::CO2"
         },
         {
-          "description": "Sensors calculating air CO2 concentration from VOC values.",
+          "description": "Sensors calculating air CO2 concentration from VOC values",
           "type": "string",
           "const": "Sensor::eCO2"
         },
         {
-          "description": "Sensors measuring general air quality by TVOC.",
+          "description": "Sensors measuring general air quality by TVOC",
           "type": "string",
           "const": "Sensor::TVOC"
         },
@@ -165,9 +165,9 @@
             "TI",
             "NXP",
             "Toshiba",
-            "ScioSense",
             "Sensirion",
             "SolomonSystech",
+            "ScioSense",
             "Unknown"
           ]
         },
@@ -182,8 +182,7 @@
       "type": "string",
       "enum": [
         "StemmaQt",
-        "MikroBus",
-        "Qwiic"
+        "MikroBus"
       ]
     },
     "DevBoard": {
