@@ -11,6 +11,7 @@ pub enum ChipManufacturer {
     Toshiba,
     Sensirion,
     SolomonSystech,
+    ScioSense,
 
     #[default]
     Unknown,
