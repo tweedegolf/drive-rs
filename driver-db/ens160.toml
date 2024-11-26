@@ -12,23 +12,23 @@ part_numbers = ["ENS160"]
 kicad_symbol = ["ENS160-BGLM"]
 
 [[dev_boards]]
-connections = ["Qwiic", "StemmaQt"]
+connections = ["StemmaQt"]
 link = "https://www.adafruit.com/product/5606"
 manufacturer = "Adafruit"
 name = "Adafruit ENS160 MOX Gas Sensor - Sciosense CCS811 Upgrade - STEMMA QT / Qwiic"
 
 [[dev_boards]]
-connections = ["Qwiic", "StemmaQt"]
-link = "https://www.adafruit.com/product/5606"
+connections = ["StemmaQt"]
+link = "https://www.sparkfun.com/products/20844"
 manufacturer = "Sparkfun"
 name = "SparkFun Indoor Air Quality Sensor ENS160 for Arduino Qwiic"
 
 [[dev_boards]]
 connections = ["StemmaQt"]
-link = "https://www.adafruit.com/product/5606"
+link = "https://www.dfrobot.com/product-2523.html"
 manufacturer = "DFRobot"
 name = "Fermion - ENS160 Air Quality Sensor - DFRobot SEN0515"
 
 [interfaces.i2c]
-addrs = [0x53]
+addrs = [0x52, 0x53]
 interrupt = true
