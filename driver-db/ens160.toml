@@ -1,0 +1,34 @@
+manifest_version = "0.0.1"
+
+[meta]
+categories = ["Sensor::TVOC", "Sensor::eCO2"]
+datasheets = [
+    "https://www.sciosense.com/wp-content/uploads/2023/12/ENS160-Datasheet.pdf",
+]
+manufacturer = "ScioSense"
+names = ["ENS160"]
+part_numbers = ["ENS160"]
+
+kicad_symbol = []
+
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.adafruit.com/product/5606"
+manufacturer = "Adafruit"
+name = "Adafruit ENS160 MOX Gas Sensor - Sciosense CCS811 Upgrade - STEMMA QT / Qwiic"
+
+[[dev_boards]]
+connections = ["StemmaQt"]
+link = "https://www.sparkfun.com/products/20844"
+manufacturer = "Sparkfun"
+name = "SparkFun Indoor Air Quality Sensor ENS160 for Arduino Qwiic"
+
+[[dev_boards]]
+connections = []
+link = "https://www.dfrobot.com/product-2523.html"
+manufacturer = "DFRobot"
+name = "Fermion - ENS160 Air Quality Sensor - DFRobot SEN0515"
+
+[interfaces.i2c]
+addrs = [0x52, 0x53]
+interrupt = true

@@ -17,6 +17,7 @@ pub enum BoardManufacturer {
     Mikroe,
     #[serde(rename = "BBC")]
     Bbc,
+    DFRobot,
 }
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize, JsonSchema)]
