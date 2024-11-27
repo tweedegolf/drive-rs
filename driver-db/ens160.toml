@@ -9,7 +9,7 @@ manufacturer = "ScioSense"
 names = ["ENS160"]
 part_numbers = ["ENS160"]
 
-kicad_symbol = ["ENS160-BGLM"]
+kicad_symbol = []
 
 [[dev_boards]]
 connections = ["StemmaQt"]
@@ -24,7 +24,7 @@ manufacturer = "Sparkfun"
 name = "SparkFun Indoor Air Quality Sensor ENS160 for Arduino Qwiic"
 
 [[dev_boards]]
-connections = ["StemmaQt"]
+connections = []
 link = "https://www.dfrobot.com/product-2523.html"
 manufacturer = "DFRobot"
 name = "Fermion - ENS160 Air Quality Sensor - DFRobot SEN0515"
