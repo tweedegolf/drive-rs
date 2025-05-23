@@ -77,7 +77,7 @@
       bind:selected={selected_i}
     />
     <Filter
-      name="👮 License"
+      name="📄 License"
       values={t_indexes.license}
       bind:selected={selected_l}
     />

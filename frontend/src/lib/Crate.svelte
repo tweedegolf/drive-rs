@@ -129,7 +129,7 @@
     {/if}
   </div>
   <div class="stats-box">
-    <p>👮 License: {crate.license}</p>
+    <p>📄 License: {crate.license}</p>
     <p>⬇️ All-Time: {crate.downloads}</p>
     <p>⬇️ This version: {crate.this_version_downloads}</p>
     <p>
