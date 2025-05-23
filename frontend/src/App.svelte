@@ -59,7 +59,7 @@
 <h1>{selected_crates.length} awesome drivers waiting for you!</h1>
 <main>
   <div class="filters">
-    <SortFilter name="Sort by" />
+    <SortFilter name="↕️ Sort by" />
     <TextFilter crates={t_crates} bind:selected={selected_f} />
     <Filter
       name="Categories"
