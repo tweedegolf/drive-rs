@@ -74,7 +74,7 @@
     {/if}
     {#if crate.interfaces && (crate.interfaces.i2c || crate.interfaces.spi)}
       <p>
-        🚌 Interfaces:
+        🔌 Interfaces:
         {#if crate.interfaces.i2c}I2C{/if}
         {#if crate.interfaces.spi}SPI{/if}
       </p>
@@ -129,7 +129,7 @@
     {/if}
   </div>
   <div class="stats-box">
-    <p>👮 License: {crate.license}</p>
+    <p>📄 License: {crate.license}</p>
     <p>⬇️ All-Time: {crate.downloads}</p>
     <p>⬇️ This version: {crate.this_version_downloads}</p>
     <p>

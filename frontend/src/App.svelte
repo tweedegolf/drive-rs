@@ -59,25 +59,25 @@
 <h1>{selected_crates.length} awesome drivers waiting for you!</h1>
 <main>
   <div class="filters">
-    <SortFilter name="Sort by" />
+    <SortFilter name="↕️ Sort by" />
     <TextFilter crates={t_crates} bind:selected={selected_f} />
     <Filter
-      name="Categories"
+      name="🧰 Categories"
       values={t_indexes.category}
       bind:selected={selected_c}
     />
     <Filter
-      name="Dependencies"
+      name="⛓️ Dependencies"
       values={t_indexes.dependencies}
       bind:selected={selected_d}
     />
     <Filter
-      name="Interfaces"
+      name="🔌 Interfaces"
       values={t_indexes.interfaces}
       bind:selected={selected_i}
     />
     <Filter
-      name="👮 License"
+      name="📄 License"
       values={t_indexes.license}
       bind:selected={selected_l}
     />
