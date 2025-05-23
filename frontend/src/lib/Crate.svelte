@@ -74,7 +74,7 @@
     {/if}
     {#if crate.interfaces && (crate.interfaces.i2c || crate.interfaces.spi)}
       <p>
-        🚌 Interfaces:
+        🔌 Interfaces:
         {#if crate.interfaces.i2c}I2C{/if}
         {#if crate.interfaces.spi}SPI{/if}
       </p>

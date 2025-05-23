@@ -72,7 +72,7 @@
       bind:selected={selected_d}
     />
     <Filter
-      name="Interfaces"
+      name="🔌 Interfaces"
       values={t_indexes.interfaces}
       bind:selected={selected_i}
     />
