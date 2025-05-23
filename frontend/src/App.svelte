@@ -67,7 +67,7 @@
       bind:selected={selected_c}
     />
     <Filter
-      name="Dependencies"
+      name="⛓️ Dependencies"
       values={t_indexes.dependencies}
       bind:selected={selected_d}
     />
