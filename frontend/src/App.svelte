@@ -62,7 +62,7 @@
     <SortFilter name="↕️ Sort by" />
     <TextFilter crates={t_crates} bind:selected={selected_f} />
     <Filter
-      name="Categories"
+      name="🧰 Categories"
       values={t_indexes.category}
       bind:selected={selected_c}
     />
