@@ -75,7 +75,7 @@ fn main() -> anyhow::Result<()> {
         let krate = match crates.remove(&name) {
             Some(krate) => krate,
             None => {
-                eprintln!("No crate found for driver: {}", name);
+                eprintln!("No crate found for driver: {name}");
                 continue;
             }
         };

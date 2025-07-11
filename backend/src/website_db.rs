@@ -53,7 +53,7 @@ impl Display for ShortDependency {
         write!(f, "{}", self.name)?;
 
         if let Some(version) = &self.version {
-            write!(f, "@{}", version)?;
+            write!(f, "@{version}")?;
         }
 
         Ok(())
