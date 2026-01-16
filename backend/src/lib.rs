@@ -9,8 +9,6 @@ use std::fmt::Display;
 
 pub mod driver_db;
 
-mod description;
-
 pub mod awesome_embedded_rust;
 
 pub mod dumpsterbase;
