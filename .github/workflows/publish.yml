@@ -10,11 +10,11 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout project
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
         with:
           persist-credentials: false
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: 'npm'
@@ -23,11 +23,11 @@ jobs:
         run: npm ci
         working-directory: frontend
       - name: Install toolchain
-        uses: dtolnay/rust-toolchain@7b1c307e0dcbda6122208f10795a713336a9b35a
+        uses: dtolnay/rust-toolchain@f7ccc83f9ed1e5b9c81d8a67d7ad1a747e22a561
         with:
           toolchain: "stable"
       - name: Rust cache
-        uses: Swatinem/rust-cache@82a92a6e8fbeee089604da2575dc567ae9ddeaab
+        uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5
         with:
           shared-key: "build"
       - name: Download db-dump
@@ -40,7 +40,7 @@ jobs:
         run: npm run build -- --base="/${{github.event.repository.name}}/"
         working-directory: frontend
       - name: Updload to gh-pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: frontend/dist
   deploy:
