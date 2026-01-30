@@ -14,7 +14,11 @@ pub struct Driver {
     /// Version of this driver description TOML schema
     pub manifest_version: semver::Version,
     /// Metadata about the driver
-    pub meta: Meta,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub meta: Option<Meta>,
+    /// List of devices supported by this driver
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub devices: Vec<Meta>,
     /// List of development boards that house this chip
     #[serde(skip_serializing_if = "Vec::is_empty", default)]
     pub dev_boards: Vec<DevBoard>,

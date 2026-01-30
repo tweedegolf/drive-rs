@@ -46,7 +46,11 @@ pub struct FullCrate {
 }
 
 impl FullCrate {
-    pub fn new(driver_db: Driver, mut krate: dumpsterbase::Crate) -> anyhow::Result<Self> {
+    pub fn new(
+        driver_db: &Driver,
+        meta: driver_db::Meta,
+        mut krate: dumpsterbase::Crate,
+    ) -> anyhow::Result<Self> {
         let version = krate
             .versions
             .pop()
@@ -63,10 +67,10 @@ impl FullCrate {
             repository: krate.repository,
             created_at: krate.created_at,
             updated_at: krate.updated_at,
-            chip_meta: driver_db.meta,
-            dev_boards: driver_db.dev_boards,
-            interfaces: driver_db.interfaces,
-            resources: driver_db.resources,
+            chip_meta: meta,
+            dev_boards: driver_db.dev_boards.clone(),
+            interfaces: driver_db.interfaces.clone(),
+            resources: driver_db.resources.clone(),
             license: version.license,
             crate_size: version.crate_size,
             rust_version: version.rust_version,

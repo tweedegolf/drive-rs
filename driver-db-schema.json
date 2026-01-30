@@ -10,18 +10,31 @@
         "$ref": "#/$defs/DevBoard"
       }
     },
+    "devices": {
+      "description": "List of devices supported by this driver",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Meta"
+      }
+    },
     "interfaces": {
       "description": "Interfaces used by this chip",
       "$ref": "#/$defs/Interfaces"
     },
     "manifest_version": {
       "description": "Version of this driver description TOML schema",
-      "type": "string",
-      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+      "$ref": "#/$defs/SemVer"
     },
     "meta": {
       "description": "Metadata about the driver",
-      "$ref": "#/$defs/Meta"
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Meta"
+        },
+        {
+          "type": "null"
+        }
+      ]
     },
     "resources": {
       "description": "Blog articles and similar covering this driver and its usage",
@@ -33,8 +46,7 @@
   },
   "additionalProperties": false,
   "required": [
-    "manifest_version",
-    "meta"
+    "manifest_version"
   ],
   "$defs": {
     "BoardManufacturer": {
@@ -75,7 +87,7 @@
           "const": "Sensor::PowerMeter"
         },
         {
-          "description": "Sensors measuring acceleration\n\n These can also be used to determine where \"down\" is,\n using the gravitational acceleration.",
+          "description": "Sensors measuring acceleration\n\nThese can also be used to determine where \"down\" is,\nusing the gravitational acceleration.",
           "type": "string",
           "const": "Sensor::Accelerometer"
         },
@@ -110,7 +122,7 @@
           "const": "Sensor::Humidity"
         },
         {
-          "description": "Sensors measuring magnetic fields\n\n These are commonly used as compasses, measuring the\n magnetic field of the earth.",
+          "description": "Sensors measuring magnetic fields\n\nThese are commonly used as compasses, measuring the\nmagnetic field of the earth.",
           "type": "string",
           "const": "Sensor::Magnetometer"
         },
@@ -150,7 +162,7 @@
           "const": "Timer"
         },
         {
-          "description": "Clocks that keep track of wall time\n\n Often allow to measure time with an external battery.",
+          "description": "Clocks that keep track of wall time\n\nOften allow to measure time with an external battery.",
           "type": "string",
           "const": "Timer::RTC"
         }
@@ -221,6 +233,7 @@
           "items": {
             "type": "integer",
             "format": "uint8",
+            "maximum": 255,
             "minimum": 0
           }
         },
@@ -327,12 +340,12 @@
     "Resource": {
       "type": "object",
       "properties": {
-        "title": {
-          "type": "string"
-        },
         "link": {
           "type": "string",
           "format": "uri"
+        },
+        "title": {
+          "type": "string"
         }
       },
       "additionalProperties": false,
@@ -340,6 +353,10 @@
         "title",
         "link"
       ]
+    },
+    "SemVer": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
     },
     "Spi": {
       "type": "object",

@@ -35,6 +35,7 @@ fn main() -> anyhow::Result<()> {
                 Driver {
                     manifest_version: Version::new(0, 0, 0),
                     meta: Default::default(),
+                    devices: Default::default(),
                     dev_boards: Default::default(),
                     interfaces: Interfaces {
                         i2c: e.interface.contains("I2C").then_some(I2c {
@@ -79,15 +80,30 @@ fn main() -> anyhow::Result<()> {
                 continue;
             }
         };
-        let full = match FullCrate::new(driver, krate) {
-            Ok(full) => full,
-            Err(e) => {
-                eprintln!("Error creating full crate: {e}");
-                continue;
-            }
-        };
 
-        output.push(full);
+        // Gather all device metadata (legacy 'meta' + new 'devices')
+        let mut metas = Vec::new();
+        if let Some(m) = driver.meta.clone() {
+            metas.push(m);
+        }
+        metas.extend(driver.devices.clone());
+
+        if metas.is_empty() {
+            eprintln!("Driver {name} has no devices defined");
+            continue;
+        }
+
+        for meta in metas {
+            // We clone krate for each device because it is consumed by FullCrate::new
+            let full = match FullCrate::new(&driver, meta, krate.clone()) {
+                Ok(full) => full,
+                Err(e) => {
+                    eprintln!("Error creating full crate: {e}");
+                    continue;
+                }
+            };
+            output.push(full);
+        }
     }
 
     let indexes = Indexes::from(output.as_slice());
